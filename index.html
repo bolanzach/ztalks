@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon"> -->
-  </head>
+<z-template component="index-layout" head-title="ZTalk" style-path="./">
+  <z-template component="navbar"></z-template>
 
-  <body>
-    <main>
-      <h1>Z Talks Tech</h1>
-    </main>
-  </body>
-</html>
+  <main>
+    <div class="home__blog-layout">
+      <z-template component="blog-card" link="./blog/hello-world.html">
+        <h3>Second one</h3>
+        asdfsdf asdfkas df asdf
+      </z-template>
+      <z-template component="blog-card" link="./blog/hello-world.html">
+        <h3>Hello, World</h3>
+        Heres some text
+      </z-template>
+    </div>
+  </main>
+</z-template>

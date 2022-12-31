@@ -1,0 +1,17 @@
+@import "_global";
+@import "_util";
+@import "_navbar";
+@import "_blog-card";
+
+.home__blog-layout {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.blog__container {
+  background-color: white;
+  padding: 0.5em 2em;
+  box-shadow: 0 1px 3px 1px rgb(60 64 67 / 15%);
+  border-radius: 4px;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "ztalks",
+  "version": "0.0.1",
+  "description": "Z Talks Tech Blog",
+  "main": "index.html",
+  "repository": "git@github.com:bolanzach/ztalks.git",
+  "author": "bolanzach <bolanzach@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "style-sass": "sass --watch styles:dist",
+    "build": "deno run --allow-read --allow-write build.ts && yarn style-sass"
+  }
+}
