@@ -26,6 +26,9 @@ a:visited {
   margin: 0 auto;
   max-width: 1000px;
 }
+.util__published-date {
+  font-style: italic;
+}
 
 .navbar {
   background-color: white;
@@ -37,6 +40,36 @@ a:visited {
 .navbar__logo {
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+.blog__container {
+  background-color: white;
+  padding: 0.5em 2em;
+  box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  border-radius: 4px;
+}
+.blog__container p {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.2em;
+}
+
+pre.code {
+  font-size: 1.4em;
+  background-color: rgb(39, 40, 43);
+  color: rgb(223, 225, 231);
+  border-radius: 5px;
+  overflow-x: scroll;
+}
+pre.code .comment {
+  color: rgb(16, 169, 169);
+  font-style: italic;
+}
+pre.code .var-name {
+  color: rgb(143, 173, 251);
+}
+pre.code .string {
+  color: orange;
+  font-style: italic;
 }
 
 .blog-card {
@@ -60,13 +93,6 @@ a:visited {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-}
-
-.blog__container {
-  background-color: white;
-  padding: 0.5em 2em;
-  box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-  border-radius: 4px;
 }
 
 /*# sourceMappingURL=main.css.map */

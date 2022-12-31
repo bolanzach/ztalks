@@ -1,16 +1,92 @@
-<z-template component="index-layout" head-title="Hello World" style-path="../">
-  <z-template component="navbar"></z-template>
+<z component="index-layout" head-title="Hello World" style-path="../">
+  <z component="navbar" home-path="../"></z>
 
   <main>
     <div class="blog__container">
       <h1>Hello, World</h1>
 
-      <h3>The obligaroty first post</h3>
+      <h3>The obligatory first post</h3>
+
+      <div class="util__published-date">January 2, 2023</div>
 
       <p>
-        Yes, yet another tech blog. I'll my best to keep this about technology
-        in general, software engineering, etc. but who knows,
+        Yes, yet another tech blog. I'll do my best to keep this about
+        technology in general, software engineering, etc. but who knows what
+        I'll rant about. For starters, let's see how this simple blog was made!
       </p>
+
+      <h3>Javascript everywhere</h3>
+
+      <p>
+        I admit it - I come from a Javascript framework focused background. When
+        I was really first starting off <i>AngularJs</i> was still en vogue with
+        <i>React</i> only starting to gain traction. As such, the way I think
+        about web UIs is through Components. The component model is an excellent
+        abstraction and checks all the boxes for composability and reusability.
+        These libraries have nurtured a whole sector of software engineering in
+        "frontend development" by allowing devs to seemlessly weave together
+        their HTML, CSS, and Javascript logic (or Typescript if you're lucky).
+        The result is we have a generous amount of extremely complex web
+        applications. However, as been stressed many times, frameworks are not
+        the silver bullet that our industry makes us think they are.
+      </p>
+      <p>
+        I'm using this blog as the prime example - there is no need for an
+        entire framework. Just like the good 'ol days, it's a mostly static
+        website that's nicely separated by individual pages that can all be
+        navigated to. By shedding all the Javascript
+      </p>
+
+      <p>
+        While I resist to use a framework, I concede that the Component model is
+        powerfull. As mentioned earlier, there is a lot to gain and components
+        could help streamline building and (more importantly) maintaining the
+        blog. How awesome would it be that instead of having to redeclare all
+        the <code>HTML</code> boilerplate for each page, we could just use a
+        resuable Tag or Component?
+      </p>
+
+      <h3>Introducing the <code>&lt;z&gt;</code> tag</h3>
+
+      <p>
+        It turns out we can get all the benefits of components without having to
+        bring in frameworks - we just have to build it!
+      </p>
+
+      <z component="blog-hello-world-code-1"></z>
+
+      <p>
+        I created a new synthetic HTML tag which, with a little help from
+        Javascript, can define some custom behavior. In this case, we say that
+        we want to render the <code>blog</code> component (similar to how you
+        would with any other native element tag).
+      </p>
+
+      <p>Now say our <code>layout</code> component looked as follows:</p>
+
+      <z component="blog-hello-world-code-2"></z>
+
+      <p>
+        This defines a simple <i>Blog</i> component that can be reused throught
+        our site. For our exmaple, this layout markup will replace the
+        <code>&lt;z&gt;</code> element. Also pay notice to that
+        <code>yield</code> attribute. This is something inspired by EmberJs
+        where the child elements of the consuming component will be transfused
+        into the yield statement. This is best explained though examples, so our
+        end result is:
+      </p>
+
+      <z component="blog-hello-world-code-3"></z>
+
+      <p>Pretty cool!</p>
+
+      <p>
+        I've extend this further to allow <i>very basic</i> data passing (props)
+        to help make components more customizable and reusable. With some small
+        changes we can do even cooler things:
+      </p>
+
+      <z component="blog-hello-world-code-4"></z>
     </div>
   </main>
-</z-template>
+</z>

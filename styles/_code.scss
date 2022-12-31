@@ -1,0 +1,19 @@
+pre.code {
+  font-size: 1.4em;
+  background-color: rgb(39, 40, 43);
+  color: rgb(223, 225, 231);
+  border-radius: 5px;
+  overflow-x: scroll;
+
+  .comment {
+    color: rgb(16, 169, 169);
+    font-style: italic;
+  }
+  .var-name {
+    color: rgb(143, 173, 251);
+  }
+  .string {
+    color: orange;
+    font-style: italic;
+  }
+}

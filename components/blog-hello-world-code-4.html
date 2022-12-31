@@ -1,0 +1,19 @@
+<z component="code">
+  <span class="comment">// index.html</span>
+  <span class="var-name">&lt;z</span> component=<span class="string">"blog"</span> blog-title=<span class="string">"React who?"</span><span class="var-name">&gt</span>
+    <span class="var-name">&lt;div&gt;</span>blah blah blah&lt;<span class="var-name">/div&gt</span>
+  <span class="var-name">&lt;/z&gt</span>
+
+  <span class="comment">// blog.html</span>
+  <span class="var-name">&lt;article</span><span class="var-name">&gt</span>
+    <span class="var-name">&lt;h3&gt;</span><span class="string">&lt;%</span> blog-title <span class="string">%&gt;</span><span class="var-name">/h3&gt</span>
+    <span class="var-name">&lt;z</span> yield<span class="var-name">&gt</span><span class="var-name">&lt;/z&gt</span>
+  <span class="var-name">&lt;/article&gt</span>
+
+  <span class="comment">// dist/index.html</span>
+  <span class="var-name">&lt;article</span><span class="var-name">&gt</span>
+    <span class="var-name">&lt;h3&gt;</span>React who?&lt;<span class="var-name">/h3&gt</span>
+    <span class="var-name">&lt;div&gt;</span>blah blah blah&lt;<span class="var-name">/div&gt</span>
+  <span class="var-name">&lt;/article&gt</span>
+  
+</z>

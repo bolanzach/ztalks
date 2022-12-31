@@ -7,10 +7,10 @@ import {
 } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
 const APP_DIR = Deno.cwd();
-const Z_TAG_ELEMENT_SELECTOR = "z-template";
+const Z_TAG_ELEMENT_SELECTOR = "z";
 const Z_TAG_INCLUDE_COMPONENT_ATTR = "component";
 const Z_TAG_YIELD_ATTR = "yield";
-const INCLUDE_HTML_MACRO = "<!-- z-template-include-html -->";
+const INCLUDE_HTML_MACRO = "<!-- z-macro-include-html -->";
 
 /**
  * Returns an array of file names in the given directory
