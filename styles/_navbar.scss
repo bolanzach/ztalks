@@ -10,4 +10,10 @@
     margin-block-start: 0;
     margin-block-end: 0;
   }
+
+  &__logo-underline {
+    margin: 10px auto 0 auto;
+    border-top: 2px solid black;
+    width: 24px;
+  }
 }

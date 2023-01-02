@@ -43,9 +43,15 @@ a:visited {
   margin-block-start: 0;
   margin-block-end: 0;
 }
+.navbar__logo-underline {
+  margin: 10px auto 0 auto;
+  border-top: 2px solid black;
+  width: 24px;
+}
 
 .blog__container {
   background-color: white;
+  color: #202124;
   padding: 0.5em 2em;
   box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
   border-radius: 4px;
@@ -73,6 +79,12 @@ a:visited {
 .blog__page-break {
   margin: 3em;
   border: 1px solid #dcdcdc;
+}
+.blog__code {
+  background-color: #e7e7ee;
+  padding: 2px;
+  border-radius: 3px;
+  color: black;
 }
 
 pre.code {

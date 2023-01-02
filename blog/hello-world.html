@@ -2,13 +2,12 @@
   <z component="navbar" home-path="../"></z>
 
   <main>
-    <div class="blog__container">
-      <h1>Hello, World</h1>
-
-      <h2>The obligatory first post</h2>
-
-      <div class="blog__published-date">January 2, 2023</div>
-
+    <z
+      component="blog"
+      blog-title="Hello, World"
+      blog-sub-title="The obligatory first post"
+      blog-publish-date="January 2, 2023"
+    >
       <p>
         Yes, yet another tech blog. I've delayed starting this for
         <i>years</i> now because I never thought I had anything interesting to
@@ -78,6 +77,8 @@
         exactly how this blog works.
       </p>
 
+      <div class="blog__page-break"></div>
+
       <p>
         One of the most important contributions these javascript frameworks have
         helped promote is the use of the Component architecture - the now
@@ -85,8 +86,8 @@
         sub-problems. This model works great in the Web as the DOM already takes
         this approach with each Element being their own isolated units that can
         be composed together to form the whole application. The part that is
-        missing in native HTML, and where frameworks help fill in the gaps, is
-        when we want to have our own custom Elements or Components.
+        missing in native HTML, and where frameworks have helped fill in the
+        gaps, is when we need to reuse a composition of these basic elements.
       </p>
 
       <p>
@@ -99,7 +100,7 @@
         own HTML custom elements/components?
       </p>
 
-      <h2>Introducing the <code>&lt;z&gt;</code> tag</h2>
+      <h2>Introducing the <code class="blog__code">&lt;z&gt;</code> tag</h2>
 
       <p>
         It turns out we can get all the benefits of components without having to
@@ -111,23 +112,34 @@
       <p>
         I created a new synthetic HTML tag which, with a little help from
         Javascript, can define some custom behavior. In this case, we say that
-        we want to render the <code>blog</code> component (similar to how you
-        would with any other native element tag). Why <code>blog</code>? Because
-        I'm unoriginal.
+        we want to render the <code class="blog__code">blog</code> component
+        (similar to how you would with any other native element tag). Why name
+        it <code class="blog__code">&lt;z&gt;</code>? Because I'm unoriginal.
+        Also note that these are <i>not</i> Web Components - I'll mention that
+        further down.
       </p>
 
-      <p>Now say our <code>blog</code> component looked as follows:</p>
+      <p>
+        Now say our <code class="blog__code">blog</code> component looked as
+        follows:
+      </p>
 
       <z component="blog-hello-world-code-2"></z>
 
       <p>
         This defines a simple <i>Blog</i> component that can be reused throught
-        our site. For our exmaple, this layout markup will replace the
-        <code>&lt;z&gt;</code> element. Also pay notice to that
-        <code>yield</code> attribute. This is something inspired by EmberJs
+        our site. For our exmaple, this blog markup will replace the
+        <code class="blog__code">&lt;z&gt;</code> element that is defined in
+        <code class="blog__code">index.html</code>. Also pay notice to that
+        <code class="blog__code">yield</code> attribute. This is something
+        inspired by
+        <a
+          href="https://api.emberjs.com/ember/release/classes/Ember.Templates.helpers/methods/yield?anchor=yield"
+          >EmberJs</a
+        >
         where the child elements of the consuming component will be transfused
-        into the yield statement. This is probably better seen though examples,
-        so her'es the result:
+        into the yield template. Sounds confusing? It's really not, and is
+        probably better seen though examples - here's the result!
       </p>
 
       <z component="blog-hello-world-code-3"></z>
@@ -135,10 +147,10 @@
       <p><i>Pretty cool!</i></p>
 
       <p>
-        I've extend this further to allow <i>very basic</i> data passing (props)
-        to help make components more customizable and reusable. With some small
-        changes we can do even cooler things, like providing a
-        <code>blog-title</code>:
+        I've extended this further to allow <i>very basic</i> data passing
+        (props) to help make components more customizable and reusable. With
+        some small changes we can do even cooler things, like providing a
+        <code class="blog__code">blog-title</code>:
       </p>
 
       <z component="blog-hello-world-code-4"></z>
@@ -146,20 +158,41 @@
       <p>
         The best part about all of this is the resulting markup is generated
         ahead of time in a build/compile step - there's no Javascript working
-        behind the scenes to generate pages as the build produces the static
-        HTML files that are ready to be served. This means there is no need to
-        maintain a web server of our own, and I can instead use a static web
-        service like AWS Amplify.
+        behind the scenes! No scripts on the server and nothing on the client.
+        The build produces the static HTML files that are to be served. And as I
+        mentioned earlier, this means there's no need to wrangle a web server of
+        our own, and I can instead use a "cheap" static site hosting service.
+        It's like partying in 1995.
       </p>
 
       <div class="blog__page-break"></div>
 
+      <h2>Closing remarks</h2>
+
       <p>
-        There's obviously things missing that would be nice to have, namely a
-        control-flow mechanism to conditionally render elements. It also seems
-        trivial to extend the library such that it allows consumers to define
-        their own custom <code>&lt;z&gt;</code> element attributes.
+        There's obviously things missing in my little library that would be nice
+        to have, namely a control-flow mechanism to conditionally render
+        elements. It also seems trivial to extend the library such that it
+        allows consumers to define their own custom
+        <code class="blog__code">&lt;z&gt;</code> element attributes. Who knows,
+        maybe this will eventually become Turing-complete. But I'll address
+        these later, I have an itch to dive more into a great Youtube series on
+        <a
+          href="https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3"
+          >Neural Networks</a
+        >.
       </p>
-    </div>
+
+      <p>
+        I'm aware that things like <a href="https://ejs.co/">EJS</a> exist that
+        do pretty much what I built (well okay, those template libraries are
+        much better and do much more). But for my uses these templates still
+        felt to be more powerful than what I needed. For now, I don't really
+        want a Javascript server nor do I need to run any scripts on the client
+        to "build" the markup. I did not reach for Web Components for these same
+        reasons. As the site evolves and inevitably add useless features with
+        bloated javascript, I may reconsider and move to full components.
+      </p>
+    </z>
   </main>
 </z>
