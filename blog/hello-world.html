@@ -61,7 +61,7 @@
       <p>
         I realize we're starting to come full circle and <i>SSR</i> is popular
         and <a href="https://nextjs.org/">Next.js</a> (and others) promise a
-        lot, but in many scenarios these feel like we're throwing more
+        lot. But in many scenarios these feel like we're throwing more
         technology at a problem that is only a problem because of the underlying
         technology.
       </p>
@@ -93,11 +93,13 @@
       <p>
         With a site that has multiple HTML pages, such as this blog, there is
         potentially a lot of repetitive boilerplate in setting up all the
-        top-level tags. Additionally, we naturally will have repeatable complex
-        modules such as <i>navbars</i> and <i>footers</i> that appear on all
-        these pages. Instead of having to redeclare all that repeated markeup
-        everywhere, wouldn't it be incredible to abstract these modules into our
-        own HTML custom elements/components?
+        top-level tags (<code class="blog__code">html</code>,
+        <code class="blog__code">head</code>, etc). Additionally, we naturally
+        will have repeatable complex modules such as <i>navbars</i> and
+        <i>footers</i> that appear on all these pages. Instead of having to
+        redeclare all that repeated markeup everywhere, wouldn't it be
+        incredible to abstract these modules into our own HTML custom
+        elements/components?
       </p>
 
       <h2>Introducing the <code class="blog__code">&lt;z&gt;</code> tag</h2>
@@ -158,11 +160,11 @@
       <p>
         The best part about all of this is the resulting markup is generated
         ahead of time in a build/compile step - there's no Javascript working
-        behind the scenes! No scripts on the server and nothing on the client.
-        The build produces the static HTML files that are to be served. And as I
-        mentioned earlier, this means there's no need to wrangle a web server of
-        our own, and I can instead use a "cheap" static site hosting service.
-        It's like partying in 1995.
+        behind the scenes! No scripts on the server and nothing on the client -
+        the build produces the final static HTML files that are to be served.
+        And as I mentioned earlier, this means there's no need to wrangle a web
+        server of our own, and I can instead use a "cheap" static site hosting
+        service. It's like partying in 1995.
       </p>
 
       <div class="blog__page-break"></div>
@@ -175,23 +177,26 @@
         elements. It also seems trivial to extend the library such that it
         allows consumers to define their own custom
         <code class="blog__code">&lt;z&gt;</code> element attributes. Who knows,
-        maybe this will eventually become Turing-complete. But I'll address
-        these later, I have an itch to dive more into a great Youtube series on
-        <a
-          href="https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3"
-          >Neural Networks</a
-        >.
+        maybe with a little motivation this will eventually become
+        Turing-complete.
       </p>
 
       <p>
-        I'm aware that things like <a href="https://ejs.co/">EJS</a> exist that
-        do pretty much what I built (well okay, those template libraries are
-        much better and do much more). But for my uses these templates still
-        felt to be more powerful than what I needed. For now, I don't really
-        want a Javascript server nor do I need to run any scripts on the client
-        to "build" the markup. I did not reach for Web Components for these same
-        reasons. As the site evolves and inevitably add useless features with
-        bloated javascript, I may reconsider and move to full components.
+        I guess I have to cover my butt and mention that I'm aware that things
+        like <a href="https://ejs.co/">EJS</a> exist that do pretty much what I
+        built (well okay, those template libraries are better and do much more).
+        But for my uses these templates still felt to be more powerful than what
+        I needed. For now, I don't really want a Javascript server nor do I need
+        to run any scripts on the client to "build" dynamic markup. I did not
+        reach for Web Components for these same reasons. As the site evolves and
+        I inevitably add useless features with bloated javascript, I may
+        reconsider and move to full components. For now, I have an itch to
+        scratch for diving into an
+        <a
+          href="https://www.youtube.com/watch?v=Wo5dMEP_BbI&list=PLQVvvaa0QuDcjD5BAw2DxE6OF2tius3V3"
+          >excellent Youtube series</a
+        >
+        on Neural Networks.
       </p>
     </z>
   </main>
