@@ -5,52 +5,105 @@
     <div class="blog__container">
       <h1>Hello, World</h1>
 
-      <h3>The obligatory first post</h3>
+      <h2>The obligatory first post</h2>
 
-      <div class="util__published-date">January 2, 2023</div>
+      <div class="blog__published-date">January 2, 2023</div>
 
       <p>
-        Yes, yet another tech blog. I'll do my best to keep this about
-        technology in general, software engineering, etc. but who knows what
-        I'll rant about. For starters, let's see how this simple blog was made!
+        Yes, yet another tech blog. I've delayed starting this for
+        <i>years</i> now because I never thought I had anything interesting to
+        share and the interwebs can be a pretty rough space. I still don't think
+        I have anything particularly interesting to say and the internet hasn't
+        gotten any nicer, but here we are.
       </p>
 
-      <h3>Javascript everywhere</h3>
+      <p>
+        By trade I'm a software engineer building stuff on the Web. As of late
+        however, I've been getting more into everything <i>except for web</i> -
+        systems programming in Rust, sustainability, computer graphics, video
+        game development and machine learning. On that end, a lot of future
+        posts will likely chronicle how I stumble through these various topics.
+        I'll do my best to keep entries about software engineering, career
+        advancement and technology in general, but who knows what I'll rant
+        about. Believe it or not, I have various interests outside of machines
+        such as surfing, traveling, and eating damn good food (yeah really
+        original) so these may sneak in as well. Hopefully readers find
+        something in here useful. If not, whatever, stop procrastinating and go
+        read a book or work on your startup.
+      </p>
+
+      <p>
+        For starters, and to not make this a complete waste of a blog post,
+        let's explore how this simple blog site was built. You can find the
+        <a href="https://github.com/bolanzach/ztalks">source on github</a>.
+      </p>
+
+      <div class="blog__page-break"></div>
+
+      <h2>Javascript frameworks everywhere</h2>
 
       <p>
         I admit it - I come from a Javascript framework focused background. When
         I was really first starting off <i>AngularJs</i> was still en vogue with
-        <i>React</i> only starting to gain traction. As such, the way I think
-        about web UIs is through Components. The component model is an excellent
-        abstraction and checks all the boxes for composability and reusability.
-        These libraries have nurtured a whole sector of software engineering in
-        "frontend development" by allowing devs to seemlessly weave together
-        their HTML, CSS, and Javascript logic (or Typescript if you're lucky).
-        The result is we have a generous amount of extremely complex web
-        applications. However, as been stressed many times, frameworks are not
-        the silver bullet that our industry makes us think they are.
-      </p>
-      <p>
-        I'm using this blog as the prime example - there is no need for an
-        entire framework. Just like the good 'ol days, it's a mostly static
-        website that's nicely separated by individual pages that can all be
-        navigated to. By shedding all the Javascript
+        <i>React</i> only starting to gain traction. These libraries have
+        nurtured a whole sector of software engineering in "frontend
+        development" by allowing devs to seemlessly weave together their HTML,
+        CSS, and Javascript logic (or Typescript if you're lucky). The result is
+        we have a generous amount of extremely complex web applications. Some
+        programs that have traditionally been reserved for the <i>C++</i> crowd,
+        such as video games, are now portable and playable on in the Browser.
+        It's definitely been an exciting time to develop on the web but it does
+        come with its faults. One of which is with the proliferation of these JS
+        libraries it seems the default is to reach for frameworks in all cases,
+        even when they're not needed. For a blog site such as this one it would
+        be plain silly to immediately reach for <i>Svelte</i>.
       </p>
 
       <p>
-        While I resist to use a framework, I concede that the Component model is
-        powerfull. As mentioned earlier, there is a lot to gain and components
-        could help streamline building and (more importantly) maintaining the
-        blog. How awesome would it be that instead of having to redeclare all
-        the <code>HTML</code> boilerplate for each page, we could just use a
-        resuable Tag or Component?
+        I realize we're starting to come full circle and <i>SSR</i> is popular
+        and <a href="https://nextjs.org/">Next.js</a> (and others) promise a
+        lot, but in many scenarios these feel like we're throwing more
+        technology at a problem that is only a problem because of the underlying
+        technology.
       </p>
 
-      <h3>Introducing the <code>&lt;z&gt;</code> tag</h3>
+      <p>
+        Based off the sites that I visit frequently throughout my day, I'd argue
+        that the vast majority could be implemented as mostly static HTML pages.
+        What's further, is many of them probably don't even need to build a
+        custom API server that a <i>Go</i> developer felt was needed. Instead,
+        <i>Keep It Simple, Stupid</i> - use static HTML and slap those guys on
+        something simple like
+        <a href="https://aws.amazon.com/amplify/">AWS Amplify</a>. This is
+        exactly how this blog works.
+      </p>
+
+      <p>
+        One of the most important contributions these javascript frameworks have
+        helped promote is the use of the Component architecture - the now
+        ubiquitous idea where complex UIs can be broken down into smaller
+        sub-problems. This model works great in the Web as the DOM already takes
+        this approach with each Element being their own isolated units that can
+        be composed together to form the whole application. The part that is
+        missing in native HTML, and where frameworks help fill in the gaps, is
+        when we want to have our own custom Elements or Components.
+      </p>
+
+      <p>
+        With a site that has multiple HTML pages, such as this blog, there is
+        potentially a lot of repetitive boilerplate in setting up all the
+        top-level tags. Additionally, we naturally will have repeatable complex
+        modules such as <i>navbars</i> and <i>footers</i> that appear on all
+        these pages. Instead of having to redeclare all that repeated markeup
+        everywhere, wouldn't it be incredible to abstract these modules into our
+        own HTML custom elements/components?
+      </p>
+
+      <h2>Introducing the <code>&lt;z&gt;</code> tag</h2>
 
       <p>
         It turns out we can get all the benefits of components without having to
-        bring in frameworks - we just have to build it!
+        bring in javascript frameworks - we just have to build it!
       </p>
 
       <z component="blog-hello-world-code-1"></z>
@@ -59,10 +112,11 @@
         I created a new synthetic HTML tag which, with a little help from
         Javascript, can define some custom behavior. In this case, we say that
         we want to render the <code>blog</code> component (similar to how you
-        would with any other native element tag).
+        would with any other native element tag). Why <code>blog</code>? Because
+        I'm unoriginal.
       </p>
 
-      <p>Now say our <code>layout</code> component looked as follows:</p>
+      <p>Now say our <code>blog</code> component looked as follows:</p>
 
       <z component="blog-hello-world-code-2"></z>
 
@@ -72,21 +126,40 @@
         <code>&lt;z&gt;</code> element. Also pay notice to that
         <code>yield</code> attribute. This is something inspired by EmberJs
         where the child elements of the consuming component will be transfused
-        into the yield statement. This is best explained though examples, so our
-        end result is:
+        into the yield statement. This is probably better seen though examples,
+        so her'es the result:
       </p>
 
       <z component="blog-hello-world-code-3"></z>
 
-      <p>Pretty cool!</p>
+      <p><i>Pretty cool!</i></p>
 
       <p>
         I've extend this further to allow <i>very basic</i> data passing (props)
         to help make components more customizable and reusable. With some small
-        changes we can do even cooler things:
+        changes we can do even cooler things, like providing a
+        <code>blog-title</code>:
       </p>
 
       <z component="blog-hello-world-code-4"></z>
+
+      <p>
+        The best part about all of this is the resulting markup is generated
+        ahead of time in a build/compile step - there's no Javascript working
+        behind the scenes to generate pages as the build produces the static
+        HTML files that are ready to be served. This means there is no need to
+        maintain a web server of our own, and I can instead use a static web
+        service like AWS Amplify.
+      </p>
+
+      <div class="blog__page-break"></div>
+
+      <p>
+        There's obviously things missing that would be nice to have, namely a
+        control-flow mechanism to conditionally render elements. It also seems
+        trivial to extend the library such that it allows consumers to define
+        their own custom <code>&lt;z&gt;</code> element attributes.
+      </p>
     </div>
   </main>
 </z>

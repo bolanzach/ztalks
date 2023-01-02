@@ -1,7 +1,7 @@
 body {
   background-color: rgb(241, 241, 241);
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, sans-serif;
   color: black;
 }
 
@@ -16,6 +16,11 @@ main {
   margin: 0 auto;
   max-width: 1000px;
 }
+@media (max-width: 650px) {
+  main {
+    padding: 0;
+  }
+}
 
 a:visited {
   color: black;
@@ -25,9 +30,6 @@ a:visited {
 .util__center {
   margin: 0 auto;
   max-width: 1000px;
-}
-.util__published-date {
-  font-style: italic;
 }
 
 .navbar {
@@ -48,17 +50,40 @@ a:visited {
   box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
   border-radius: 4px;
 }
+.blog__container h1 {
+  text-align: center;
+}
+.blog__container h2 {
+  font-weight: 200;
+}
 .blog__container p {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.2em;
 }
+.blog__container a {
+  color: rgb(69, 171, 255);
+}
+.blog__container a:hover {
+  text-decoration: underline;
+}
+.blog__published-date {
+  font-style: italic;
+  font-weight: 100;
+}
+.blog__page-break {
+  margin: 3em;
+  border: 1px solid #dcdcdc;
+}
 
 pre.code {
-  font-size: 1.4em;
+  font-size: 1.2em;
   background-color: rgb(39, 40, 43);
   color: rgb(223, 225, 231);
   border-radius: 5px;
   overflow-x: scroll;
+}
+pre.code .declaration {
+  color: rgb(16, 93, 169);
 }
 pre.code .comment {
   color: rgb(16, 169, 169);
