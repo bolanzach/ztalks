@@ -6,7 +6,5 @@
 @import "_blog-card";
 
 .home__blog-layout {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  width: 100%;
 }

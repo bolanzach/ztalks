@@ -1,7 +1,14 @@
 <article class="blog-card">
   <a href="<% link %>">
     <div class="blog-card__container">
-      <z yield></z>
+      <div class="blog-card__content">
+        <img src="<% blog-img %>" class="blog-card__img" />
+        <div>
+          <h2><% blog-title %></h2>
+          <p class="blog-card__publish-date"><% blog-publish-date %></p>
+          <z yield></z>
+        </div>
+      </div>
     </div>
   </a>
 </article>
