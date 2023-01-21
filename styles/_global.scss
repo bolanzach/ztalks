@@ -1,16 +1,14 @@
-$primary-color: black;
-
 body {
   background-color: rgb(241, 241, 241);
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
-  color: $primary-color;
+  color: $font-color;
 }
 
 a {
   text-decoration: none;
   text-decoration-line: none;
-  color: $primary-color;
+  color: $font-color;
 }
 
 main {
@@ -24,6 +22,6 @@ main {
 }
 
 a:visited {
-  color: $primary-color;
+  color: $font-color;
   text-decoration: none;
 }

@@ -2,13 +2,13 @@ body {
   background-color: rgb(241, 241, 241);
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
-  color: black;
+  color: rgb(42, 42, 42);
 }
 
 a {
   text-decoration: none;
   text-decoration-line: none;
-  color: black;
+  color: rgb(42, 42, 42);
 }
 
 main {
@@ -23,7 +23,7 @@ main {
 }
 
 a:visited {
-  color: black;
+  color: rgb(42, 42, 42);
   text-decoration: none;
 }
 
@@ -115,7 +115,7 @@ pre.code {
   overflow-x: scroll;
 }
 pre.code .declaration {
-  color: rgb(16, 93, 169);
+  color: rgb(61, 158, 255);
 }
 pre.code .comment {
   color: rgb(16, 169, 169);
@@ -134,39 +134,73 @@ pre.code .string {
   border: none;
   border-bottom: 1px solid #dcdcdc;
   cursor: pointer;
+  overflow: hidden;
 }
-.blog-card__container {
-  padding: 0.85em;
-}
-.blog-card__container h2 {
+.blog-card h2 {
   margin-block-start: 0;
   margin-block-end: 0.5em;
+  font-size: 1.5em;
+}
+@media (max-width: 650px) {
+  .blog-card h2 {
+    font-size: 1.2em;
+  }
+}
+.blog-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100;
 }
 .blog-card__publish-date {
   font-style: italic;
-  font-weight: 100;
+  font-weight: 300;
   font-size: 0.8em;
   margin: 0;
 }
-.blog-card__content {
+.blog-card__container {
   display: flex;
   margin: 0.8em;
   align-items: flex-start;
 }
 .blog-card__text {
   margin-top: 0.5em;
+  padding-bottom: 0.2em;
+}
+@media (max-width: 650px) {
+  .blog-card__text {
+    display: none;
+  }
+}
+.blog-card__footer {
+  font-weight: 600;
+  font-size: 0.8em;
+  margin: 0;
 }
 .blog-card__img {
   display: block;
   width: 225px;
-  border-radius: 4px;
-  margin: 0 2em 0.5em 0;
+  height: 150px;
+  border-radius: 2px;
+  margin: 0 2em 0 0;
+  object-fit: cover;
+}
+@media (max-width: 1020px) {
+  .blog-card__img {
+    width: 180px;
+    height: 150px;
+  }
 }
 @media (max-width: 650px) {
   .blog-card__img {
-    width: 170px;
-    border-radius: 8px;
-    margin: 0 1em 0.5em 0;
+    width: 150px;
+    height: 100px;
+  }
+}
+@media (max-width: 450px) {
+  .blog-card__img {
+    width: 100px;
+    height: 100px;
   }
 }
 

@@ -1,13 +1,15 @@
 <article class="blog-card">
   <a href="<% link %>">
     <div class="blog-card__container">
+      <img src="<% blog-img %>" class="blog-card__img" />
       <div class="blog-card__content">
-        <img src="<% blog-img %>" class="blog-card__img" />
         <div>
           <h2><% blog-title %></h2>
           <p class="blog-card__publish-date"><% blog-publish-date %></p>
           <z yield></z>
         </div>
+
+        <div class="blog-card__footer"><% blog-read-time %> min read time</div>
       </div>
     </div>
   </a>
