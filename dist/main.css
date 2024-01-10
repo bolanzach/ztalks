@@ -5,7 +5,7 @@ body {
 }
 
 a {
-  color: #308093;
+  color: #18768c;
 }
 
 main {
@@ -14,14 +14,8 @@ main {
   max-width: 1000px;
   margin-bottom: 50px;
 }
-@media (max-width: 650px) {
-  main {
-    padding: 0;
-  }
-}
-
 a:visited {
-  color: #308093;
+  color: #18768c;
 }
 
 .util__mb2 {
@@ -41,7 +35,7 @@ a:visited {
   margin-bottom: 6px;
 }
 .cover-letter h5 {
-  font-weight: 200;
+  font-weight: 300;
   font-size: 1em;
   margin-top: 0;
 }
