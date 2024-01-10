@@ -10,6 +10,17 @@ a {
     //text-decoration-line: none;
     // color: $font-color;
     color: #18768c;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 0.85em;
+    transition: color 0.1s ease-in;
+
+    &:visited {
+        color: #18768c;
+    }
+
+    &:hover {
+        color: #140429;
+    }
 }
   
 main {
@@ -21,9 +32,4 @@ main {
     @media (max-width: 650px) {
         //padding: 0;
     }
-}
-
-a:visited {
-    // text-decoration: none;
-    color: #18768c;
 }

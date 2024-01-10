@@ -6,6 +6,15 @@ body {
 
 a {
   color: #18768c;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.85em;
+  transition: color 0.1s ease-in;
+}
+a:visited {
+  color: #18768c;
+}
+a:hover {
+  color: #140429;
 }
 
 main {
@@ -14,15 +23,11 @@ main {
   max-width: 1000px;
   margin-bottom: 50px;
 }
-a:visited {
-  color: #18768c;
-}
-
 .util__mb2 {
   margin-bottom: 6px;
 }
 .util__small-divider {
-  width: 80px;
+  width: 38px;
   background-color: black;
   height: 2px;
 }
