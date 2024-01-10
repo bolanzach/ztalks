@@ -1,0 +1,11 @@
+<z component="code">
+  <span class="declaration">const</span> <span class="var-name">myFood</span>: <span class="interface">Food</span> = <span class="var-name">Food.Burrito</span>;
+
+  <span class="declaration">const</span> <span class="var-name">foodMessage</span> = {
+    <span class="declaration">[</span>Food.Pizza<span class="declaration">]</span>: () => <span class="string">"Pizza party"</span>,
+    <span class="declaration">[</span>Food.Burrito<span class="declaration">]</span>: () => <span class="string">"Burritos every weekend"</span>,
+    <span class="declaration">[</span>Food.Burger<span class="declaration">]</span>: () => <span class="string">"Double patties"</span>,
+    <span class="declaration">[</span>Food.Salad<span class="declaration">]</span>: () => <span class="string">"For decoration"</span>,
+  }[myFood](); <span class="comment">// "Burritos every weekend"</span>
+
+</z>

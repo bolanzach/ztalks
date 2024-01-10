@@ -1,0 +1,18 @@
+<z component="code">
+  <span class="declaration">type</span> <span class="interface">PatternMatch</span> = <i>&lt;<span class="var-name">T</span> <span class="declaration">extends</span> <span class="interface">string | number</span>, <span class="var-name">U</span>&gt;(
+    val: <span class="var-name">T</span>,
+    matcher: <span class="interface">Record</span>&lt;<span class="var-name">T</span>, () =&gt; <span class="var-name">U</span>&gt;
+  ): () =&gt <span class="var-name">U</span></i>;
+
+  <span class="comment">// You can implement this yourself</span>
+  <span class="declaration">const</span> <span class="func">match</span>: <i><span class="interface">PatternMatch</span></i> = ...
+
+  <span class="declaration">const</span> <span class="var-name">foodMessage</span> = <span class="func">match</span>(<span class="var-name">myFood</span>, {
+    <span class="declaration">[</span>Food.Pizza<span class="declaration">]</span>: () => <span class="string">"Pizza party"</span>,
+    <span class="declaration">[</span>Food.Burrito<span class="declaration">]</span>: () => <span class="string">"Burritos every weekend"</span>,
+    <span class="declaration">[</span>Food.Burger<span class="declaration">]</span>: () => <span class="string">"Double patties"</span>,
+    <span class="declaration">[</span>Food.Salad<span class="declaration">]</span>: () => <span class="string">"For decoration"</span>,
+  });
+
+</z>
+

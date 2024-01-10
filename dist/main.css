@@ -2,19 +2,17 @@ body {
   background-color: rgb(241, 241, 241);
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
-  color: rgb(42, 42, 42);
 }
 
 a {
-  text-decoration: none;
-  text-decoration-line: none;
-  color: rgb(42, 42, 42);
+  color: #308093;
 }
 
 main {
   padding: 0.8em 0.55em;
   margin: 0 auto;
   max-width: 1000px;
+  margin-bottom: 50px;
 }
 @media (max-width: 650px) {
   main {
@@ -23,189 +21,29 @@ main {
 }
 
 a:visited {
-  color: rgb(42, 42, 42);
-  text-decoration: none;
+  color: #308093;
 }
 
-.util__center {
-  margin: 0 auto;
-  max-width: 1000px;
+.util__mb2 {
+  margin-bottom: 6px;
+}
+.util__small-divider {
+  width: 80px;
+  background-color: black;
+  height: 2px;
 }
 
-.navbar {
-  background-color: white;
-  padding: 0.5em;
+.cover-letter p {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.1em;
 }
-.navbar__content {
-  text-align: center;
+.cover-letter h3, .cover-letter h4, .cover-letter h5 {
+  margin-bottom: 6px;
 }
-.navbar__logo {
-  margin-block-start: 0;
-  margin-block-end: 0;
-}
-.navbar__logo-underline {
-  margin: 10px auto 0 auto;
-  border-top: 2px solid black;
-  width: 24px;
-}
-
-.blog__container {
-  background-color: white;
-  color: #202124;
-  padding: 0.5em 2em;
-  box-shadow: 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-  border-radius: 4px;
-}
-.blog__container h1 {
-  text-align: center;
-}
-.blog__container h2 {
+.cover-letter h5 {
   font-weight: 200;
-}
-.blog__container p {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 1.2em;
-}
-.blog__container a {
-  color: rgb(69, 171, 255);
-}
-.blog__container a:hover {
-  text-decoration: underline;
-}
-.blog__published-date {
-  font-style: italic;
-  font-weight: 100;
-}
-.blog__page-break {
-  margin: 3em;
-  border: 1px solid #dcdcdc;
-}
-.blog__code {
-  background-color: #e7e7ee;
-  padding: 2px;
-  border-radius: 3px;
-  color: black;
-}
-.blog__img {
-  display: block;
-  width: 100%;
-  max-width: 500px;
-  margin: 2em auto;
-  border-radius: 6px;
-}
-.blog__img img {
-  display: block;
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 0.5em;
-  border-radius: 6px;
-}
-.blog__img-sub-text {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 0.8em;
-  text-align: center;
-  color: #a5a5a5;
-}
-
-pre.code {
-  font-size: 1.2em;
-  background-color: rgb(39, 40, 43);
-  color: rgb(223, 225, 231);
-  border-radius: 5px;
-  overflow-x: scroll;
-}
-pre.code .declaration {
-  color: rgb(61, 158, 255);
-}
-pre.code .comment {
-  color: rgb(16, 169, 169);
-  font-style: italic;
-}
-pre.code .var-name {
-  color: rgb(143, 173, 251);
-}
-pre.code .string {
-  color: orange;
-  font-style: italic;
-}
-
-.blog-card {
-  background-color: white;
-  border: none;
-  border-bottom: 1px solid #dcdcdc;
-  cursor: pointer;
-  overflow: hidden;
-}
-.blog-card h2 {
-  margin-block-start: 0;
-  margin-block-end: 0.5em;
-  font-size: 1.5em;
-}
-@media (max-width: 650px) {
-  .blog-card h2 {
-    font-size: 1.2em;
-  }
-}
-.blog-card__content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100;
-}
-.blog-card__publish-date {
-  font-style: italic;
-  font-weight: 300;
-  font-size: 0.8em;
-  margin: 0;
-}
-.blog-card__container {
-  display: flex;
-  margin: 0.8em;
-  align-items: flex-start;
-}
-.blog-card__text {
-  margin-top: 0.5em;
-  padding-bottom: 0.2em;
-}
-@media (max-width: 650px) {
-  .blog-card__text {
-    display: none;
-  }
-}
-.blog-card__footer {
-  font-weight: 600;
-  font-size: 0.8em;
-  margin: 0;
-}
-.blog-card__img {
-  display: block;
-  width: 225px;
-  height: 150px;
-  border-radius: 2px;
-  margin: 0 2em 0 0;
-  object-fit: cover;
-}
-@media (max-width: 1020px) {
-  .blog-card__img {
-    width: 180px;
-    height: 150px;
-  }
-}
-@media (max-width: 650px) {
-  .blog-card__img {
-    width: 150px;
-    height: 100px;
-  }
-}
-@media (max-width: 450px) {
-  .blog-card__img {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-.home__blog-layout {
-  width: 100%;
+  font-size: 1em;
+  margin-top: 0;
 }
 
 /*# sourceMappingURL=main.css.map */

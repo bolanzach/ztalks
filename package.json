@@ -9,6 +9,6 @@
   "private": false,
   "scripts": {
     "style-sass": "sass --watch styles:dist",
-    "build": "deno run --allow-read --allow-write build.ts && yarn style-sass"
+    "build": "deno run --allow-read --allow-write compiler/zcompiler.ts && yarn style-sass"
   }
 }

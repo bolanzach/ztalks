@@ -1,6 +1,12 @@
+
 .util {
-  &__center {
-    margin: 0 auto;
-    max-width: 1000px;
-  }
+    &__mb2 {
+        margin-bottom: 6px;
+    }
+
+    &__small-divider {
+        width: 80px;
+        background-color: black;
+        height: 2px;
+    }
 }

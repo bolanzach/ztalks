@@ -1,4 +1,4 @@
-# ZTalks.tech
+# zachbolan.com
 
 ### Local Development
 
@@ -13,4 +13,6 @@ To compile the project run:
 yarn build
 ```
 
-This will generate the appropriate files in the `/dist` directory. The files to serve exist in dist.
+This will generate the appropriate files in the `/dist` directory. The files to serve exist in dist. It's plain old static HTML so you can view the site at `path/to/ztalks/dist/index.html`.
+
+> Note: May need to manually create a `/dist` folder if none exists

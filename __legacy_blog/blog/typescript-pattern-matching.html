@@ -1,0 +1,173 @@
+<z component="index-layout" head-title="Hello World" style-path="../">
+  <z component="navbar" home-path="../"></z>
+
+  <main>
+    <z
+      component="blog"
+      blog-title="Typescript Pattern Matching"
+      blog-sub-title="XXX"
+      blog-publish-date="January 12, 2023"
+    >
+      <p>
+        Pattern matching is, in my opinion, one of the more powerful tools
+        available to programmers. It's something that I first ran across when
+        playing with Haskell and then later Rust. At this point, I'm not sure if
+        I could be as productive in any language that doesn't support the
+        feature in some form - it's that powerful. Coming from Typescript and
+        never heard of it or don't know what I'm even talking about? No worries,
+        I got you.
+      </p>
+
+      <p>
+        Typescript doesn't support pattern matching as a first class feature so
+        we're going to take some liberties. But that is somewhat of the point -
+        we don't need to even flex Typescript much to start understanding the
+        basics of pattern matching and how you can use a form of it in your
+        code.
+      </p>
+
+      <p>
+        From the
+        <a href="https://doc.rust-lang.org/book/ch06-02-match.html">Rust Book</a
+        >, the general idea is that pattern matching
+
+        <quote>
+          allows you to compare a value against a series of patterns and then
+          execute code based on which pattern matches.
+        </quote>
+
+        Said another way, matching is a control-flow construct that exhaustively
+        maps from a value's shape to an expression or value. That may still be
+        basically word vomit so let's break it down, using concepts from
+        Typescript.
+      </p>
+
+      <p>
+        <i>Control-flow:</i> Pattern matching is something like an
+        <code class="blog__code">if/else</code> or a
+        <code class="blog__code">switch</code>.
+      </p>
+
+      <p>
+        <i>Exhaustively maps:</i> It's a mapping, so we can express this
+        statement as a Typescript object. The <i>exhaustive</i> part is a little
+        more complex, but it has to do with the mapping object's keys. This is
+        one of the most important concepts so we'll talk about this property in
+        detail soon.
+      </p>
+
+      <p>
+        <i>[Maps] from a value's shape to an expression or value:</i> This means
+        that the data's Type determines the mapping object's keys, and thus what
+        we are allowed to "match" on. The values are an expression or some
+        value.
+      </p>
+
+      <p>
+        I know things may still be fuzzy but hang in there - I promise this will
+        make sense! Nothing we're about to do is going to melt your mind.
+      </p>
+
+      <p>
+        With this rough definiton we at least know that we can express a
+        pattern-matching statement as an object in Typescript. Let's dive into a
+        basic example to get our feet wet.
+      </p>
+
+      <z component="blog-ts-pm-code-1"></z>
+
+      <p>
+        Believe it or not, that's it. I told you it doesn't look so bad! And
+        it's all we need to do for some basic matching.
+      </p>
+
+      <p>
+        But wait, couldn't this be expressed as a
+        <code class="blog__code">switch</code> or
+        <code class="blog__code">if/else</code>? In short, yes, it could be.
+        Like I mentioned, pattern matching is just another control-flow
+        statement and so it can often be used interchangably with the other more
+        familiar statements. And honestly, between you and me, in this simple
+        example it would be preferrable to do something like:
+      </p>
+
+      <z component="blog-ts-pm-code-2"></z>
+
+      <p>
+        You're smart and you know it's coming so let's expand on the example.
+        Instead of just booleans what if we're dealing with a set of known
+        values - an Enum in Typescript. We know this is where
+        <code class="blog__code">if/else</code> begins to fall short and there's
+        entire books about how to avoid such travesties. Let's see how our
+        pattern matching can start to handle such situations:
+      </p>
+
+      <z component="blog-ts-pm-code-3"></z>
+
+      <p>
+        A little more complex but it's nothing you can't handle. Other than
+        learning that I'm a fatass, you can start to see how the
+        <i>data shape</i>, in this case the Enum of
+        <code class="blog__code">Food</code>, dictates the
+        <code class="blog__code">FOOD_MATCHER</code> object's keys. We'll
+        continue to dive deeper into the <i>exhaustive</i> shortly, but for now
+        you should notice that how every enum member is accounted for. Each
+        <code class="blog__code">Food</code> item is mapped to a value.
+      </p>
+
+      <p>
+        Ok Ok you're asking - but what about
+        <code class="blog__code">switch</code>? You've been using that since you
+        leared to crawl, and it seems like it would be appropriate here. And
+        again, you're not totally incorrect. You <i>could</i> use it, but that's
+        not what we're learning. And for all the love
+        <code class="blog__code">switch</code> has gotten thanks to
+        <i>Redux</i> it's missing the most important property of paattern
+        matching - <i>exhaustive checking</i>. Since we're using Typescript
+        let's update our above example with proper types.
+      </p>
+
+      <z component="blog-ts-pm-code-4"></z>
+
+      <p>
+        Adding type information unlocks the full power of pattern matching in
+        Typescript (and in general). Our
+        <code class="blog__code">FOOD_MATCHER</code> is now <i>required</i> to
+        enumerate every member in <code class="blog__code">FOOD</code> or else
+        we get errors at compile time. This is so powerful because it is
+        impossible to forget to map a value when we add a new member to our
+        enum.
+      </p>
+
+      <z component="blog-ts-pm-code-5"></z>
+
+      <p>
+        Ewww the dreaded squiggly red underline! The
+        <code class="blog__code">FOOD_MATCHER</code> has a missing property and
+        we cannot compile. Thus this satisfies our
+        <i>exhaustive type checking</i> as every value in our data shape must be
+        accounted for.
+      </p>
+
+      <p>
+        At this point I'm hoping you're seeing how this all works but let's
+        start pulling it all together and cleaning things thing up.
+      </p>
+
+      <z component="blog-ts-pm-code-6"></z>
+
+      <p>
+        Rather than just mapping to string literals (or any other static values)
+        we can map to a function or an <i>expression</i>. This is our
+        <i>flow of control</i> and allows us to take specific actions based on
+        the incoming data shape.
+      </p>
+
+      <z component="blog-ts-pm-code-7"></z>
+
+      <div class="blog__page-break"></div>
+
+      <p>It should</p>
+    </z>
+  </main>
+</z>

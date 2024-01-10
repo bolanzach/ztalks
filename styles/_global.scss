@@ -1,27 +1,29 @@
 body {
-  background-color: rgb(241, 241, 241);
-  margin: 0;
-  font-family: "Inter", Arial, sans-serif;
-  color: $font-color;
+    background-color: rgb(241, 241, 241);
+    margin: 0;
+    font-family: "Inter", Arial, sans-serif;
+    //color: $font-color;
 }
-
+  
 a {
-  text-decoration: none;
-  text-decoration-line: none;
-  color: $font-color;
+    //text-decoration: none;
+    //text-decoration-line: none;
+    // color: $font-color;
+    color: #308093;
 }
-
+  
 main {
-  padding: 0.8em 0.55em;
-  margin: 0 auto;
-  max-width: 1000px;
+    padding: 0.8em 0.55em;
+    margin: 0 auto;
+    max-width: 1000px;
+    margin-bottom: 50px;
 
-  @media (max-width: 650px) {
-    padding: 0;
-  }
+    @media (max-width: 650px) {
+        padding: 0;
+    }
 }
 
 a:visited {
-  color: $font-color;
-  text-decoration: none;
+    // text-decoration: none;
+    color: #308093;
 }

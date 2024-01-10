@@ -3,12 +3,14 @@
     <span class="declaration">Pizza</span>,
     <span class="declaration">Burrito</span>,
     <span class="declaration">Burger</span>,
-  };
+  }
+
   <span class="declaration">const</span> <span class="var-name">FOOD_MATCHER</span> = {
     <span class="declaration">[</span>Food.Pizza<span class="declaration">]</span>: <span class="string">"Pizza party"</span>,
     <span class="declaration">[</span>Food.Burrito<span class="declaration">]</span>: <span class="string">"Burritos every weekend"</span>,
     <span class="declaration">[</span>Food.Burger<span class="declaration">]</span>: <span class="string">"Double patties"</span>,
   };
+
   <span class="declaration">const</span> <span class="var-name">myFood</span> = <span class="var-name">Food.Burrito</span>;
   <span class="declaration">const</span> <span class="var-name">matched</span> = <span class="var-name">FOOD_MATCHER</span>[<span class="var-name">myFood</span>]; <span class="comment">// "Burritos every weekend"</span>
 
