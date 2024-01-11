@@ -27,9 +27,9 @@ main {
     padding: 0.8em 0.55em;
     margin: 0 auto;
     max-width: 1000px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 
     @media (max-width: 650px) {
-        //padding: 0;
+        padding: 12px;
     }
 }

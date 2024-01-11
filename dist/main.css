@@ -21,8 +21,14 @@ main {
   padding: 0.8em 0.55em;
   margin: 0 auto;
   max-width: 1000px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
+@media (max-width: 650px) {
+  main {
+    padding: 12px;
+  }
+}
+
 .util__mb2 {
   margin-bottom: 6px;
 }
@@ -32,17 +38,36 @@ main {
   height: 2px;
 }
 
-.cover-letter p {
+footer {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0 50px 10px 50px;
+}
+footer .content {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgb(142, 142, 142);
+  padding: 12px 0;
+}
+
+.cover-letter p, .cover-letter ul, .cover-letter li {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.1em;
 }
-.cover-letter h3, .cover-letter h4, .cover-letter h5 {
+.cover-letter h2, .cover-letter h3, .cover-letter h4, .cover-letter h5 {
   margin-bottom: 6px;
+}
+.cover-letter h2 {
+  margin-top: 40px;
 }
 .cover-letter h5 {
   font-weight: 300;
   font-size: 1em;
   margin-top: 0;
+}
+.cover-letter li {
+  font-size: 1em;
+  margin-bottom: 0.5em;
 }
 
 /*# sourceMappingURL=main.css.map */

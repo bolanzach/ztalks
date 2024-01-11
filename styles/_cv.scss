@@ -1,16 +1,25 @@
 .cover-letter {
-    p {
+    p, ul, li {
         font-family: "Times New Roman", Times, serif;
         font-size: 1.1em;
     }
     
-    h3, h4, h5 {
+    h2, h3, h4, h5 {
         margin-bottom: 6px;
+    }
+
+    h2 {
+        margin-top: 40px;
     }
     
     h5 {
         font-weight: 300;
         font-size: 1em;
         margin-top: 0;
+    }
+
+    li {
+        font-size: 1em;
+        margin-bottom: 0.5em;
     }
 }
