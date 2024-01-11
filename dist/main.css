@@ -40,16 +40,22 @@ main {
 
 footer {
   margin: 0 auto;
-  max-width: 1000px;
-  padding: 0 50px 10px 50px;
+  padding: 0 12px 0 12px;
 }
-footer .content {
-  display: flex;
-  justify-content: space-between;
+footer .container {
   border-top: 1px solid rgb(142, 142, 142);
   padding: 12px 0;
 }
+footer .container .content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
 
+.cover-letter {
+  max-width: 800px;
+}
 .cover-letter p, .cover-letter ul, .cover-letter li {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.1em;

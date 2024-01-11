@@ -1,12 +1,16 @@
 footer {
     margin: 0 auto;
-    max-width: 1000px;
-    padding: 0 50px 10px 50px;
+    padding: 0 12px 0 12px;
 
-    .content {
-        display: flex;
-        justify-content: space-between;
+    .container {
         border-top: 1px solid rgb(142, 142, 142);
         padding: 12px 0;
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
     }
 }
