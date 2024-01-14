@@ -167,8 +167,6 @@ function compileDynamicAttributeProps(layout: string, props: NamedNodeMap) {
 export async function Compile({ componentsDir, pagesPaths, outDir }: CompileProps) {
   const componentPaths = await GetFileNamesInDir(componentsDir);
 
-  console.dir(componentPaths)
-
   // Iterate through all components and register them
   componentPaths.forEach(async (filePath) => {
     const file = await Deno.readTextFile(`${APP_DIR}/${filePath}`);

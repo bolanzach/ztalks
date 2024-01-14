@@ -25,8 +25,27 @@
         margin-bottom: 0.5em;
     }
 
-    .header-date {
-        font-size: 0.85em;
-        margin-left: 6px;
+    .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 35px;
+
+        &__date {
+            font-size: 0.85em;
+        }
+    
+        &__image {
+            width: 30px;
+            height: 30px;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+
+        &__title {
+            margin-right: 12px;
+            vertical-align: middle;
+        }
     }
 }
