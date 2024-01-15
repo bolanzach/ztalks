@@ -60,6 +60,10 @@ footer .container .content {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.1em;
 }
+.cover-letter h1 {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
 .cover-letter h2, .cover-letter h3, .cover-letter h4, .cover-letter h5 {
   margin-bottom: 6px;
 }
