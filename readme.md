@@ -1,4 +1,4 @@
-# zachbolan.com
+# [zachbolan.com](https://www.zachbolan.com)
 
 ### Local Development
 
