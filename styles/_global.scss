@@ -1,35 +1,49 @@
 body {
-    background-color: rgb(241, 241, 241);
     margin: 0;
     font-family: "Inter", Arial, sans-serif;
-    //color: $font-color;
+    background-color: #f1f1f1;
+    transition: background-color 0.15s ease-in;
+
+    &.theme--dark {
+        background-color: rgba(24, 25, 30, 0.97);
+        color: #d2d2d2;
+    }
 }
   
 a {
-    //text-decoration: none;
-    //text-decoration-line: none;
-    // color: $font-color;
     color: #18768c;
     font-family: "Inter", Arial, sans-serif;
     font-size: 0.85em;
     transition: color 0.1s ease-in;
 
+    .theme--dark & {
+        color: #18add0;
+    }
+
     &:visited {
         color: #18768c;
+
+        .theme--dark & {
+            color: #18add0;
+        }
     }
 
     &:hover {
         color: #140429;
+
+        .theme--dark & {
+            color: #138ba5;
+        }
     }
 }
   
 main {
-    padding: 0.8em 0.55em;
-    margin: 0 auto;
-    max-width: 1000px;
+    // padding: 0.8em 0.55em;
+    // margin: 0 auto;
+    // max-width: 1000px;
     margin-bottom: 30px;
 
-    @media (max-width: 650px) {
-        padding: 12px;
-    }
+    // @media (max-width: 650px) {
+    //     padding: 12px;
+    // }
 }

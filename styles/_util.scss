@@ -1,6 +1,16 @@
 // Kind of reinventing the wheel where I could have used bootstrap or tailwind.
 
 .util {
+    &__container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0;
+
+        @media (max-width: 810px) {
+            padding: 0 12px;
+        }
+    }
+
     &__mb2 {
         margin-bottom: 6px;
     }
@@ -9,5 +19,9 @@
         width: 38px;
         background-color: black;
         height: 2px;
+
+        .theme--dark & {
+            background-color: #d2d2d2;
+        }
     }
 }

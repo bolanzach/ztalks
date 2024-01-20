@@ -1,0 +1,43 @@
+nav {
+    border-bottom: 1px solid rgb(142, 142, 142);
+    height: 40px;
+
+    .theme--dark & {
+        background-color: rgb(41, 44, 53);
+        border-color: rgba(24, 25, 30, 0.97);
+    }
+
+    .container {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logo {
+        width: 30px;
+        height: 30px;
+    }
+
+    .right-panel {
+        display: flex;
+    }
+
+    .toggle-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 15px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+
+        transition: background-color 0.1s ease-in;
+        
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.187);
+            cursor: pointer;
+        }
+    }
+}

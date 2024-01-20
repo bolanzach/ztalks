@@ -2,9 +2,17 @@ footer {
     margin: 0 auto;
     padding: 0 12px 0 12px;
 
+    .theme--dark & {
+        background-color: rgb(41, 44, 53);
+    }
+
     .container {
         border-top: 1px solid rgb(142, 142, 142);
-        padding: 12px 0;
+        padding: 24px 0;
+
+        .theme--dark & {
+            border-top: 1px solid rgba(24, 25, 30, 0.97);
+        }
 
         .content {
             max-width: 800px;

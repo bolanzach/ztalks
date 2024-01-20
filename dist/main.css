@@ -1,7 +1,12 @@
 body {
-  background-color: rgb(241, 241, 241);
   margin: 0;
   font-family: "Inter", Arial, sans-serif;
+  background-color: #f1f1f1;
+  transition: background-color 0.15s ease-in;
+}
+body.theme--dark {
+  background-color: rgba(24, 25, 30, 0.97);
+  color: #d2d2d2;
 }
 
 a {
@@ -10,25 +15,36 @@ a {
   font-size: 0.85em;
   transition: color 0.1s ease-in;
 }
+.theme--dark a {
+  color: #18add0;
+}
 a:visited {
   color: #18768c;
+}
+.theme--dark a:visited {
+  color: #18add0;
 }
 a:hover {
   color: #140429;
 }
+.theme--dark a:hover {
+  color: #138ba5;
+}
 
 main {
-  padding: 0.8em 0.55em;
-  margin: 0 auto;
-  max-width: 1000px;
   margin-bottom: 30px;
 }
-@media (max-width: 650px) {
-  main {
-    padding: 12px;
+
+.util__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+@media (max-width: 810px) {
+  .util__container {
+    padding: 0 12px;
   }
 }
-
 .util__mb2 {
   margin-bottom: 6px;
 }
@@ -37,14 +53,23 @@ main {
   background-color: black;
   height: 2px;
 }
+.theme--dark .util__small-divider {
+  background-color: #d2d2d2;
+}
 
 footer {
   margin: 0 auto;
   padding: 0 12px 0 12px;
 }
+.theme--dark footer {
+  background-color: rgb(41, 44, 53);
+}
 footer .container {
   border-top: 1px solid rgb(142, 142, 142);
-  padding: 12px 0;
+  padding: 24px 0;
+}
+.theme--dark footer .container {
+  border-top: 1px solid rgba(24, 25, 30, 0.97);
 }
 footer .container .content {
   max-width: 800px;
@@ -53,9 +78,43 @@ footer .container .content {
   justify-content: space-between;
 }
 
-.cover-letter {
-  max-width: 800px;
+nav {
+  border-bottom: 1px solid rgb(142, 142, 142);
+  height: 40px;
 }
+.theme--dark nav {
+  background-color: rgb(41, 44, 53);
+  border-color: rgba(24, 25, 30, 0.97);
+}
+nav .container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .logo {
+  width: 30px;
+  height: 30px;
+}
+nav .right-panel {
+  display: flex;
+}
+nav .toggle-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  transition: background-color 0.1s ease-in;
+}
+nav .toggle-btn:hover {
+  background-color: rgba(0, 0, 0, 0.187);
+  cursor: pointer;
+}
+
 .cover-letter p, .cover-letter ul, .cover-letter li {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.1em;
@@ -65,10 +124,13 @@ footer .container .content {
   font-family: "Times New Roman", Times, serif;
 }
 .cover-letter h2, .cover-letter h3, .cover-letter h4, .cover-letter h5 {
-  margin-bottom: 6px;
+  margin-bottom: 2px;
 }
 .cover-letter h2 {
   margin-top: 40px;
+}
+.cover-letter h4 {
+  margin-top: 30px;
 }
 .cover-letter h5 {
   font-weight: 300;
