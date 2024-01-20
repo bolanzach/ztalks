@@ -12,7 +12,7 @@ body.theme--dark {
 a {
   color: #18768c;
   font-family: "Inter", Arial, sans-serif;
-  font-size: 0.85em;
+  font-size: 0.82em;
   transition: color 0.1s ease-in;
 }
 .theme--dark a {
@@ -32,7 +32,7 @@ a:hover {
 }
 
 main {
-  margin-bottom: 30px;
+  margin-bottom: 40px !important;
 }
 
 .util__container {
@@ -44,6 +44,10 @@ main {
   .util__container {
     padding: 0 12px;
   }
+}
+.util__t-sans {
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 0.82em;
 }
 .util__mb2 {
   margin-bottom: 6px;
@@ -66,7 +70,7 @@ footer {
 }
 footer .container {
   border-top: 1px solid rgb(142, 142, 142);
-  padding: 24px 0;
+  padding: 40px 0;
 }
 .theme--dark footer .container {
   border-top: 1px solid rgba(24, 25, 30, 0.97);

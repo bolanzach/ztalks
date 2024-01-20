@@ -13,7 +13,7 @@ body {
 a {
     color: #18768c;
     font-family: "Inter", Arial, sans-serif;
-    font-size: 0.85em;
+    font-size: 0.82em;
     transition: color 0.1s ease-in;
 
     .theme--dark & {
@@ -38,12 +38,5 @@ a {
 }
   
 main {
-    // padding: 0.8em 0.55em;
-    // margin: 0 auto;
-    // max-width: 1000px;
-    margin-bottom: 30px;
-
-    // @media (max-width: 650px) {
-    //     padding: 12px;
-    // }
+    margin-bottom: 40px !important;
 }
