@@ -57,7 +57,7 @@ Now you can easily scream to the world wherever you want! This produces what you
 
 **index.html**
 ```html
-<z component="hello">
+<z component="yield-hello">
     Hell yeah brother
 </z>
 ```
@@ -86,7 +86,7 @@ Ohh yeah
 
 **index.html**
 ```html
-<z component="hello" name="dope boy">
+<z component="yield-hello-attr" name="dope boy">
     Hell yeah brother
 </z>
 ```
