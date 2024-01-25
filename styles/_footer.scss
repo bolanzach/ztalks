@@ -20,5 +20,14 @@ footer {
             display: flex;
             justify-content: space-between;
         }
+
+        .git-link {
+            display: flex;
+            align-items: center;
+
+            svg {
+                margin-right: 6px;
+            }
+        }
     }
 }

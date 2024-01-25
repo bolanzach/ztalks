@@ -12,7 +12,7 @@ body.theme--dark {
 a {
   color: #18768c;
   font-family: "Inter", Arial, sans-serif;
-  font-size: 0.82em;
+  font-size: 0.84em;
   transition: color 0.1s ease-in;
 }
 .theme--dark a {
@@ -80,6 +80,13 @@ footer .container .content {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+}
+footer .container .git-link {
+  display: flex;
+  align-items: center;
+}
+footer .container .git-link svg {
+  margin-right: 6px;
 }
 
 nav {
