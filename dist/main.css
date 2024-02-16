@@ -12,7 +12,7 @@ body.theme--dark {
 a {
   color: #18768c;
   font-family: "Inter", Arial, sans-serif;
-  font-size: 0.84em;
+  font-size: 0.9em;
   transition: color 0.1s ease-in;
 }
 .theme--dark a {
@@ -47,7 +47,6 @@ main {
 }
 .util__t-sans {
   font-family: "Inter", Arial, sans-serif;
-  font-size: 0.82em;
 }
 .util__no-header-bottom {
   margin-bottom: 2px;
@@ -130,8 +129,10 @@ nav .toggle-btn:hover {
 }
 
 .cover-letter p, .cover-letter ul, .cover-letter li {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 1.1em;
+  font-family: "Noto Serif", "Times New Roman", Times, serif;
+  font-size: 0.9em;
+  font-weight: 400;
+  font-style: normal;
 }
 .cover-letter h1 {
   text-align: center;

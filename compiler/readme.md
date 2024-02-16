@@ -1,6 +1,8 @@
 # ZCompiler
 
-#### A silly little library that helps make building static sites fun again
+#### My own little Static Site Generator
+
+Main use is when you don't mind writing your own HTML, but you want to make it a bit more modular and reusable.
 
 ## Usage
 
@@ -25,7 +27,7 @@ It's fucking awesome.
 
 #### ✨ Specify reusable HTML in components
 
-A component is just an HTML file
+A component is just an HTML file.
 
 **components/hello.html**
 ```html
@@ -46,6 +48,8 @@ Now you can easily scream to the world wherever you want! This produces what you
 ---
 
 #### ✨ Yield stuff
+
+Inspired by [Ember](https://guides.emberjs.com/release/components/block-content), use the special `<z yield>` as a placholder so that consumers can specify the content.
 
 **components/yield-hello.html**
 ```html
@@ -74,7 +78,7 @@ When compiled, produces:
 
 #### ✨ Pass in props/attributes
 
-Ohh yeah
+Ohh yeah, it can pass some data around.
 
 **components/yield-hello-attr.html**
 ```html
@@ -91,6 +95,9 @@ Ohh yeah
 </z>
 ```
 
+> :warning: **All data is stringified**
+
+
 ## In the future
 
-Maybe I'll add some mechanics to perform basic branching and looping logic. That might get too powerful though... they only asked _if_ I could do it, never if I _should_.
+The `<z>` tag is a little weird given that most people are familiar with custom elements. If anything, maybe it could be configurable to a different tag, so that I don't appear so conceited throwin' Zs everywhere. I might also add some mechanics to perform basic branching and looping logic, and improve data passing. That might get too powerful though... they only asked _if_ I could do it, never if I _should_.
