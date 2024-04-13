@@ -12,7 +12,6 @@ body.theme--dark {
 a {
   color: #18768c;
   font-family: "Inter", Arial, sans-serif;
-  font-size: 0.9em;
   transition: color 0.1s ease-in;
 }
 .theme--dark a {
