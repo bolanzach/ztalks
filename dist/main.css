@@ -127,7 +127,7 @@ nav .toggle-btn:hover {
   cursor: pointer;
 }
 
-.cover-letter p, .cover-letter ul, .cover-letter li {
+.cover-letter p, .cover-letter ol, .cover-letter ul, .cover-letter li {
   font-family: "Noto Serif", "Times New Roman", Times, serif;
   font-size: 0.9em;
   font-weight: 400;
