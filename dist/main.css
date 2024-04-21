@@ -61,6 +61,10 @@ main {
 .theme--dark .util__small-divider {
   background-color: #d2d2d2;
 }
+.util__sticky-header {
+  position: sticky;
+  top: 0;
+}
 
 footer {
   margin: 0 auto;
@@ -152,6 +156,9 @@ nav .toggle-btn:hover {
   font-size: 1em;
   margin-bottom: 0.5em;
 }
+.cover-letter p {
+  text-align: justify;
+}
 .cover-letter .header-row {
   display: flex;
   align-items: center;
@@ -165,7 +172,7 @@ nav .toggle-btn:hover {
 .cover-letter .header-row__image {
   width: 30px;
   height: 30px;
-  margin-right: 12px;
+  margin: 6px 12px 6px 0;
   vertical-align: middle;
 }
 .cover-letter .header-row__title {
