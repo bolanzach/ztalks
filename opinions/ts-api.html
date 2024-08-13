@@ -1,0 +1,230 @@
+<z component="index-layout" page-title="Typescript API Architecture" root-path="../">
+    <z component="navbar"></z>
+
+    <main class="util__container">
+        <h1>A Highly Opinionated Approach for Designing (Typescript) Web APIs</h1>
+        <h5>Authored: July 2024</h5>
+
+        <h2>File Structure</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            Getting this right is probably the most important piece as it drives many of the following decisions. Again,
+            not every project or language needs to follow this precisely, but any similar design will set things up for success.
+        </p>
+
+        <code class="codeblock">
+        src/
+            routes/
+            services/
+            transformers/
+            repositories/
+            clients/
+            models/
+        </code>
+
+        <p>
+            The ordering is intentional and reflects dependencies. An easy way to think about dependencies is looking at
+            a module's <code>import</code> statements. <b>Module A depends on module B if module A <code>import</code>
+            module B</b>. The dependencies in the file structure above have dependencies flowing downward, meaning a module at the top
+            of the list may <code>import</code> (depend on) a module below it, but a module cannot depend on one that
+            appears above it. So for example, <code>transformers</code> depend on <code>repositories</code>,
+            <code>clients</code>, and <code>models</code>, but cannot use <code>services</code> or <code>routes</code>.
+        </p>
+
+        <p>
+            Strictly adhering to this rule is critical for at least two reasons. For one, it prevents cyclical dependencies.
+            The other, less measurable affect, is that it allows for a more predictable and understandable codebase. As
+            we&#39;ll get to in the following section, each module has a specific purpose and works with its dependencies
+            to serve a coherent request. If modules are calling into code that they should not be aware of then the
+            below rules are likely being broken.
+        </p>
+
+        <h2>Modules</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            Now we look at each module individually to understand their specific purpose. Rather than follow the
+            dependencies, it makes more sense to trace what a request would look like as it enters the service and
+            responds back to the caller. Let's start with routes!
+        </p>
+
+        <h3>Routes</h3>
+
+        <p>
+            A route is the component that handles Requests and Responses as they enter and leave your service. Its main
+            purpose is to handle the protocol that your API is using, such as HTTP or gRPC. A route should have no
+            "business logic" and instead only be responsible for parsing the incoming Request and packaging the
+            Response back.
+        </p>
+
+        <p>
+            The intention is that the
+            route is tightly coupled to the network protocol so that it can abstract the implementation from the rest of the
+            system. This includes both requests, via REST, RPC, GraphQL, etc <i>AND</i> responses, such as success and error codes.
+            In other words, the application should be able to swap out or add a new protocol without affecting the rest of the system.
+        </p>
+
+        <z component="codeblock">
+        @Route('/chart')
+        export class ChartRoute {
+            @Get('/')
+            async getChart(req: RequestU&lt;GetChartRequest&gt;, res: GetChartResponse) {
+                try {
+                    return await this.chartService.getChart();
+                } catch (e) {
+                    handleHttpError(e);
+                }
+            }
+        }
+        </z>
+
+        <h3>Services</h3>
+
+        <p>
+            Services are where the business logic of your application live. This is the module that is responsible for
+            orchestrating the various components of your system to fulfill a request. This includes calling into
+            repositories, clients, and other services to retrieve the data it needs.
+        </p>
+
+        <code class="codeblock">
+        export class ChartService {
+            async getChart(): PromiseGetChartResponse {
+                const user = await this.userService.getRequestUser();
+                const chartData = await this.chartRepository.getChartDataForUser(user);
+                return transformChartDataToResponse(chartData);
+            }
+        }
+        </code>
+
+        <h3>Models</h3>
+
+        <p>
+            It&#39;s meaningless to talk about other modules without a long discussion on models. Taking some inspiration from
+            Domain-Driven Design, Models are at the center of the system and what other modules are built around. The
+            application should explicitly model as much of the domain as possible
+        </p>
+
+        <p>
+            In general, models are conceptually groupings of data, much like a <code>struct</code> in many languages. Additionally,
+            it is encouraged to take a slight RPC approach and model each Request and Response as a model. And lastly,
+            the system should be able to validate the data integrity of a model, such as ensuring that a required field is
+            actually present.
+        </p>
+
+        <code class="codeblock">
+        export class Chart {
+            @IsUUID()
+            id: string;
+
+            @IsModel(Date)
+            refreshedAt: Date;
+
+            @IsArray(Number)
+            data: number[];
+        }
+        </code>
+
+        <h3>Repositories</h3>
+
+        <p>
+            Repositories interface with the data store. In a similar fashion to routes, repositories are an abstraction
+            over an implementation and you should technically be able to swap out the data engine without affecting the
+            other pieces of the system.
+        </p>
+
+<!--        <h2>Intro</h2>-->
+
+<!--        <p>-->
+<!--            I've built my fair share of web services and have spent many hours thinking about and building the-->
+<!--            surrounding APIs. And in <i>nearly</i> every service, team, and organization that I've been at, I've bumped into more or-->
+<!--            less the same issues. The most prominent being-->
+<!--        </p>-->
+
+<!--        <ol>-->
+<!--            <li>-->
+<!--                Lack of a data-driven flow-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                The type system fails at the boundaries-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                Lack of a data-driven flow-->
+<!--            </li>-->
+<!--        </ol>-->
+
+<!--        <p>-->
+<!--            And this is not to say every-->
+<!--        </p>-->
+
+<!--        <h2>Typescript APIs Are Awesome</h2>-->
+<!--        <div class="util__small-divider util__mb2"></div>-->
+
+<!--        <p>-->
+<!--            Typescript is a natural choice for building web APIs. The language is approachable and is among the most popular, so there is-->
+<!--            plenty of talent and prior art, your UIs are likely already written in Typescript (or at least JavaScript), and the type-->
+<!--            system is particularly powerful. To boot, it's trivial for a relatively competent dev to stand up and deploy-->
+<!--            a full TS API in an afternoon. This is incredible for Proof of Concepts, MVPs, and bootstrapping ideas. But-->
+<!--            there are of course tradeoffs, and that is what we're going to address here.-->
+
+<!--&lt;!&ndash;            The tradeoff is &ndash;&gt;-->
+<!--&lt;!&ndash;            Well, most of the time, if you plan (architect) them correctly. One of the characteristics that makes&ndash;&gt;-->
+<!--&lt;!&ndash;            Typescript so powerful is its ease of use, allowing devs to slap together a working web API in an afternoon. But therein&ndash;&gt;-->
+<!--&lt;!&ndash;            lies the issue - the double-edged sword so to speak. The tradeoff is a brittle system that fails to scale&ndash;&gt;-->
+<!--&lt;!&ndash;            well as you bring on more engineers, add new features, etc etc.&ndash;&gt;-->
+
+
+
+
+<!--&lt;!&ndash;            can hear all the founders chanting <i>"MVP! MVP!"</i> and that's great and all, but things will quickly get&ndash;&gt;-->
+<!--&lt;!&ndash;            out of hand past your Valley of Death.&ndash;&gt;-->
+<!--        </p>-->
+
+<!--        <h3>The Problems</h3>-->
+
+<!--        <p>-->
+<!--            I want to make my point undeniably clear:<p>-->
+<!--        </p>-->
+
+<!--        <p>-->
+<!--            <i>You're probably just writing JavaScript with extra steps.</i>-->
+<!--        </p>-->
+
+<!--        <p>-->
+<!--            "But I have interfaces!". Yes! You do.-->
+<!--        </p>-->
+
+<!--        <p>-->
+<!--            "But I have interfaces!" And "Look at these fancy generic types that I took from the Handbook!". I'm not-->
+<!--            going to take that away from you. The type system is incredibly powerful, and it's actually a shit ton of-->
+<!--            fun bending the system to do some incredible things. But those interfaces aren't-->
+<!--            doing much for you when a client starts calling your API with bogus data.-->
+<!--        </p>-->
+
+<!--        <p>-->
+<!--            And how about your datastore? Are you raw querying your database and just hoping that the query or data-->
+<!--            schema won't change? And how confident are you that whatever types are used for the database results account-->
+<!--            for all the nuance in your schemas, such as NULL-able columns.-->
+<!--        </p>-->
+
+<!--        <p>-->
+<!--            And let's not even get started with external APIs that you're calling over the network. Any interfaces that-->
+<!--            may have been built around that API are largely meaningless by themselves. Especially when dealing with-->
+<!--            internal service APIs within your organization, those APIs are going to change and invalidate whatever-->
+<!--            assumptions your code is making.-->
+<!--        </p>-->
+
+<!--        <p>-->
+<!--            I'm not here to talk about the merits of Typescript. Rather, I'd like to present a-->
+<!--        </p>-->
+
+    </main>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+</z>

@@ -149,7 +149,7 @@ function assignAttributeProps(layout: string, props: NamedNodeMap) {
 /// Using the "library"
 ///
 
-const blogPaths = await getFiles("blog");
+const blogPaths = await getFiles("opinions");
 blogPaths.push("index.html");
 blogPaths.forEach(async (filePath) => {
   const file = await processFile(filePath);

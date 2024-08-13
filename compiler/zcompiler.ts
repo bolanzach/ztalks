@@ -193,8 +193,12 @@ export async function Compile({ componentsDir, pagesPaths, outDir }: CompileProp
 /// Using the compiler
 ///
 
-Compile({
-  componentsDir: 'components',
-  pagesPaths: ['index.html'],
-  outDir: 'dist',
-});
+(async function buildMySite() {
+  const blogPages = await GetFileNamesInDir("opinions");
+
+  Compile({
+    componentsDir: 'components',
+    pagesPaths: ['index.html', ...blogPages],
+    outDir: 'dist',
+  });
+})();
