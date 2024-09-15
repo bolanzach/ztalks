@@ -1,0 +1,15 @@
+<pre><code class="language-typescript codeblock">
+interface Food {
+    type: "pizza" | "burger" | "salad";
+}
+
+const dinner: Food = { type: "pizza" };
+
+if (dinner.type === "pizza") {
+    log("🍕");
+} else if (dinner.type === "burger") {
+    log("🍔");
+} else if (dinner.type === "salad") {
+    log("🥗");
+}
+</code></pre>

@@ -1,0 +1,15 @@
+<pre><code class="language-typescript codeblock">
+function transformChartQueryResultToChart(queryResult: ChartQueryResult): Chart {
+    return {
+        id: queryResult.id,
+        refreshedAt: new Date(queryResult.refreshedAt),
+        data: queryResult.data,
+    };
+}
+
+const MAP_CHART_TYPE_TO_LABEL: Record&lt;ChartType, string&gt; = {
+    [ChartType.BAR]: 'Bar Chart',
+    [ChartType.LINE]: 'Line Chart',
+    [ChartType.PIE]: 'Pie Chart',
+};
+</code></pre>

@@ -33,6 +33,14 @@
         }
     }
 
+    &__margin-bottom-20 {
+        margin-bottom: 20px;
+    }
+
+    &__no-scroll {
+        overflow: hidden;
+    }
+
     &__sticky-header {
         position: sticky;
         top: 0;

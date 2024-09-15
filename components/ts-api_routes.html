@@ -1,0 +1,13 @@
+<pre><code class="language-typescript codeblock">
+@Route('/chart')
+export class ChartRoute {
+    @Get('/')
+    async getChart(req: Request&lt;GetChartRequest&gt;): Promise&lt;GetChartResponse&gt; {
+        try {
+            return await this.chartService.getChart();
+        } catch (e) {
+            handleHttpError(e);
+        }
+    }
+}
+</code></pre>

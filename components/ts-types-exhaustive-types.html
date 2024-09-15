@@ -1,0 +1,14 @@
+<pre><code class="language-typescript codeblock">
+interface Food {
+    type: "pizza" | "burger" | "salad";
+}
+
+const MATCH_FOOD_TO_INGREDIENTS: Record&lt;Food["type"], string&gt; = {
+    pizza: "🍕",
+    burger: "🍔",
+    salad: "🥗"
+};
+
+const dinner = { type: "pizza" };
+const ingredients = MATCH_FOOD_TO_INGREDIENTS[dinner.type];
+</code></pre>

@@ -1,0 +1,18 @@
+<z component="codeblock">
+// In OOP we pass around large objects that know how to
+// do everything to a specific food instance
+const pizza = {
+    getIngredients(): string[];
+    cook(): void;
+    // Does this go here?
+    isThisFoodBetterThanThatFood(otherFood: Food): boolean;
+};
+
+// Instead we can have more primitive objects and define mappings in
+// locations where they make the most sense in the codebase
+const pizza = { type: "pizza" };
+
+const MATCH_FOOD_TO_INGREDIENTS: Record&lt;Food, string[]&gt; = {...};
+const MATCH_FOOD_TO_COOKING: Record&lt;Food, () => {}&gt; = {...};
+const COMPARE_FOOD: Record&lt;Food, (otherFood: Food) => boolean&gt; = {...};
+</z>

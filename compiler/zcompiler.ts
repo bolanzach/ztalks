@@ -4,7 +4,7 @@ import {
   HTMLDocument,
   NamedNodeMap,
   NodeList,
-} from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
+} from "https://deno.land/x/deno_dom@v0.1.47/deno-dom-wasm.ts";
 
 /*
 ////////////////////////////
@@ -198,7 +198,7 @@ export async function Compile({ componentsDir, pagesPaths, outDir }: CompileProp
 
   Compile({
     componentsDir: 'components',
-    pagesPaths: ['index.html', ...blogPages],
+    pagesPaths: ['index.html', 'curriculum-vitae.html', ...blogPages],
     outDir: 'dist',
   });
 })();

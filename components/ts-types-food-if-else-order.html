@@ -1,0 +1,13 @@
+<pre><code class="language-typescript codeblock">
+type CustomerOrder = "i_want_pizza" | "i_want_burger" | "i_want_salad";
+
+function getDinner(order: CustomerOrder): Food {
+    if (order === "i_want_pizza") {
+        return new Pizza();
+    } else if (order === "i_want_burger") {
+        return new Burger();
+    } else if (order === "i_want_salad") {
+        return new Salad();
+    }
+}
+</code></pre>

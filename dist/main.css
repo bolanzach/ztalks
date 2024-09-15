@@ -32,6 +32,7 @@ a:hover {
 
 main {
   margin-bottom: 40px !important;
+  min-height: calc(100vh - 200px);
 }
 
 p, ol, ul, li {
@@ -61,7 +62,7 @@ h5 {
 
 li {
   font-size: 1em;
-  margin-bottom: 0.7em;
+  margin-bottom: 0.5em;
 }
 
 p {
@@ -87,6 +88,13 @@ p {
 .header-row__title {
   margin-right: 12px;
   vertical-align: middle;
+}
+
+.main-link {
+  display: block;
+  font-size: 1.1em;
+  text-decoration: none;
+  margin: 12px 0 6px 0;
 }
 
 .util__container {
@@ -115,6 +123,12 @@ p {
 }
 .theme--dark .util__small-divider {
   background-color: #d2d2d2;
+}
+.util__margin-bottom-20 {
+  margin-bottom: 20px;
+}
+.util__no-scroll {
+  overflow: hidden;
 }
 .util__sticky-header {
   position: sticky;
@@ -153,6 +167,13 @@ nav {
   border-bottom: 1px solid rgb(142, 142, 142);
   height: 40px;
 }
+nav .zach-bolan {
+  color: black !important;
+  text-decoration: none !important;
+}
+.theme--dark nav .zach-bolan {
+  color: #d2d2d2 !important;
+}
 .theme--dark nav {
   background-color: rgb(41, 44, 53);
   border-color: rgba(24, 25, 30, 0.97);
@@ -171,6 +192,7 @@ nav .right-panel {
   display: flex;
 }
 nav .toggle-btn {
+  -webkit-appearance: none;
   width: 30px;
   height: 30px;
   border-radius: 15px;
@@ -188,6 +210,66 @@ nav .toggle-btn:hover {
 
 .codeblock {
   border-radius: 9px;
+  white-space: pre;
+  margin: 3em 0;
+  font-size: 1em;
+}
+
+code {
+  color: #d98f03;
+  font-size: 1.1em;
+}
+
+.menu {
+  width: 275px;
+  right: -305px;
+  top: 0;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+  transition: right 0.22s ease-in;
+  padding: 8px;
+}
+.menu.menu--open {
+  right: 0;
+}
+.menu__theme-list {
+  display: flex;
+  justify-content: space-between;
+}
+.menu__theme-option {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  padding: 8px;
+}
+.menu__theme-option--selected {
+  border: 2px solid #9a48f1;
+}
+.menu__theme-option--dark {
+  background-color: rgba(24, 25, 30, 0.97);
+  color: #d2d2d2;
+}
+.menu__theme-option--light {
+  background-color: #f1f1f1;
+}
+.menu__theme-option p {
+  margin: 0;
+}
+
+.menu-cover {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.04);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  display: none;
+  backdrop-filter: blur(2px);
+}
+.menu-cover.menu-cover--open {
+  display: block;
 }
 
 /*# sourceMappingURL=main.css.map */

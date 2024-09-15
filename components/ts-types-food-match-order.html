@@ -1,0 +1,16 @@
+<pre><code class="language-typescript codeblock">
+type CustomerOrder = "i_want_pizza" | "i_want_burger" | "i_want_salad";
+type FoodConstructor = new () => Food;
+
+function foodFactory(order: CustomerOrder): Food {
+    const MATCH_ORDER_TO_FOOD: Record&lt;CustomerOrder, FoodConstructor&gt; = {
+        i_want_pizza: Pizza,
+        i_want_burger: Burger,
+        i_want_salad: Salad
+    };
+    return new MATCH_ORDER_TO_FOOD[order]();
+}
+
+const dinner = foodFactory("i_want_pizza");
+dinner.getIngredients();
+</code></pre>

@@ -1,0 +1,451 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;800&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="../icon.png" type="image/x-icon">
+    <title>Typescript Exhaustive Type Checking</title>
+  </head>
+
+  <!-- Google tag (gtag.js) -->
+<!--  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VKJ3JF6D9"></script>-->
+<!--  <script>-->
+<!--    window.dataLayer = window.dataLayer || [];-->
+<!--    function gtag(){dataLayer.push(arguments);}-->
+<!--    gtag('js', new Date());-->
+
+<!--    gtag('config', 'G-3VKJ3JF6D9');-->
+<!--  </script>-->
+
+  <body class="theme--light">
+    
+    <nav>
+    <div class="util__container container">
+        <!-- <img src="icon.png" alt="Zach Bolan" class="logo"> -->
+        <a href="/" class="zach-bolan">zach bolan</a>
+
+        <div class="right-panel">
+<!--            <button type="button" id="menu-btn" class="toggle-btn" title="Change color theme">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>-->
+<!--            </button>-->
+<!--            Lucide icons-->
+            <button type="button" id="theme-toggle-btn" class="toggle-btn" title="Toggle color theme">
+                <svg xmlns="http://www.w3.org/2000/svg" id="theme-toggle-icon--light" width="36" height="36" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" id="theme-toggle-icon--dark" width="36" height="36" viewbox="0 0 24 24" fill="none" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+            </button>
+        </div>
+    </div>
+
+<!--    <z component="menu"></z>-->
+
+    <script type="text/javascript">
+
+        const getCurrentTheme = () => {
+            const savedTheme = window.localStorage.getItem('color_theme');
+            return savedTheme === 'dark' ? ['dark', 'light'] : ['light', 'dark'];
+        };
+
+        const toggleTheme = ([from, to]) => {
+            document.getElementById(`theme-toggle-icon--${from}`).style.display = 'none';
+            document.getElementById(`theme-toggle-icon--${to}`).style.display = 'block';
+            const [body] = document.getElementsByTagName('body');
+            body.classList.replace(`theme--${from}`, `theme--${to}`);
+            window.localStorage.setItem('color_theme', to);
+        }
+
+        const toggleBtn = document.getElementById('theme-toggle-btn');
+        toggleBtn.onclick = () => toggleTheme(getCurrentTheme());
+
+        // Init themes
+        toggleTheme(getCurrentTheme().reverse());
+
+
+        // const menuBtn = document.getElementById('menu-btn');
+        // const menuCloseBtn = document.getElementById('menu-close-btn');
+        // const menu = document.getElementById('menu');
+        //
+        // menuBtn.onclick = () => {
+        //     menu.classList.toggle('menu--open');
+        //     document.body.classList.toggle('util__no-scroll');
+        // };
+        // menuCloseBtn.onclick = () => {
+        //     menu.classList.toggle('menu--open');
+        //     document.body.classList.toggle('util__no-scroll');
+        // };
+        
+    </script>
+</nav>
+
+    <main class="util__container">
+        <h1>Typescript Exhaustive Type Checking</h1>
+        <h5>Published: 15.Sep.2024</h5>
+
+        <h2>Food</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            Let's open with a problem.
+            You have some <code>Food</code> and you need to perform some action based on the type of food.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+interface Food {
+    type: "pizza" | "burger" | "salad";
+}
+
+const dinner: Food = { type: "pizza" };
+
+if (dinner.type === "pizza") {
+    log("🍕");
+} else if (dinner.type === "burger") {
+    log("🍔");
+} else if (dinner.type === "salad") {
+    log("🥗");
+}
+</code></pre>
+
+        <p>
+            While the code is delicious, it's not easily extensible.
+            When a new <code>Food</code> type is added, the <i>developer</i> must remember to add a new conditional branch.
+        </p>
+
+        <p>
+            Taking a traditional object-oriented approach, one could be polymorphic and abstract over the types with concrete implementations.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+interface Food {
+    getIngredients(): void;
+}
+
+class Pizza implements Food {
+    getIngredients() {
+        console.log("🍕");
+    }
+}
+class Burger implements Food {
+    getIngredients() {
+        console.log("🍔");
+    }
+}
+class Salad implements Food {
+    getIngredients() {
+        console.log("🥗");
+    }
+}
+const dinner = new Pizza();
+
+dinner.getIngredients();
+</code></pre>
+
+        <p>
+            That is arguably more extensible at the expense of being a little overkill.
+            In the first example it was kind of nice that we could just work with primitive values.
+            Since we're talking about Typescript, these primitive objects work well within React, but also with more <a href="https://en.wikipedia.org/wiki/Data-oriented_design">data-oriented architectures</a>.
+        </p>
+
+        <p>
+            Even worse, it's not always possible to create a nice class or object for each entity.
+            What if you're receiving a <code>CustomerOrder</code> from a different service or an async (Kafka) event, and need to create dinner based on what is in the order?
+            Argh! We're back to the if-else problem.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+type CustomerOrder = "i_want_pizza" | "i_want_burger" | "i_want_salad";
+
+function getDinner(order: CustomerOrder): Food {
+    if (order === "i_want_pizza") {
+        return new Pizza();
+    } else if (order === "i_want_burger") {
+        return new Burger();
+    } else if (order === "i_want_salad") {
+        return new Salad();
+    }
+}
+</code></pre>
+
+        <h2>The Solution</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            Let's jump straight into what a better solution may look like.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+interface Food {
+    type: "pizza" | "burger" | "salad";
+}
+
+const MATCH_FOOD_TO_INGREDIENTS: Record&lt;Food["type"], string&gt; = {
+    pizza: "🍕",
+    burger: "🍔",
+    salad: "🥗"
+};
+
+const dinner = { type: "pizza" };
+const ingredients = MATCH_FOOD_TO_INGREDIENTS[dinner.type];
+</code></pre>
+
+        <p>
+            There (hopefully) shouldn't be any crazy new syntax here.
+            And while this may look similar to the if-else example, and we're just using a regular object, the key insight is that <code>Record</code> type.
+        </p>
+
+        <p>
+            The <code>Record&lt;K, V&gt;</code> essentially turns our object into a mapping of <code>K : V</code>.
+            This is immensely powerful because all possible permutations of <code>K</code> must be present in the map.
+            <i>If there is a missing key, the Typescript compiler will throw an error.</i>
+            When the keys are a <a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types">discrete union type</a> or enum, we can ensure that all possible values of that type are considered in the map.
+        </p>
+
+        <p>
+            So in our Food example, if we were to add a new Food type, we <i>MUST</i> add a new entry to the mapping.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+type FoodType = "pizza" | "burger" | "salad" | "donut";
+
+const MATCH_FOOD_TO_INGREDIENTS: Record&lt;FoodType, string&gt; = {
+    pizza: "🍕",
+    burger: "🍔",
+    salad: "🥗"
+    // Property 'donut' is missing in type 'Record&lt;FoodType, string&gt;'
+};
+</code></pre>
+
+        <h3>Back to OOP</h3>
+
+        <p>
+            Let's revisit the <code>CustomerOrder</code> example.
+            Maybe we do want to keep the <code>ingredients</code> within our <code>Food</code> because that seems to make sense.
+            We can use a mapping, as a Factory method, to handle the creation of our Food based on the Order.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+type CustomerOrder = "i_want_pizza" | "i_want_burger" | "i_want_salad";
+type FoodConstructor = new () =&gt; Food;
+
+function foodFactory(order: CustomerOrder): Food {
+    const MATCH_ORDER_TO_FOOD: Record&lt;CustomerOrder, FoodConstructor&gt; = {
+        i_want_pizza: Pizza,
+        i_want_burger: Burger,
+        i_want_salad: Salad
+    };
+    return new MATCH_ORDER_TO_FOOD[order]();
+}
+
+const dinner = foodFactory("i_want_pizza");
+dinner.getIngredients();
+</code></pre>
+
+        <p>
+            A factory is a great way to integrate with some object-oriented approaches.
+        </p>
+
+        <p>
+            One of the advantages of the mapping is that it takes a more functional approach.
+            By mapping values to values there can be multiple different maps throughout the codebase.
+            Rather than force into a single object that knows how to handle all operations for a type, we can spread out concerns knowing that when a new type is added, the compiler will complain until all mapping instances are updated.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+// In OOP we pass around large objects that know how to
+// do everything to a specific food instance
+const pizza = {
+    getIngredients(): string[];
+    cook(): void;
+    // Does this go here?
+    isThisFoodBetterThanThatFood(otherFood: Food): boolean;
+};
+
+// Instead we can have more primitive objects and define mappings in
+// locations where they make the most sense in the codebase
+const pizza = { type: "pizza" };
+
+const MATCH_FOOD_TO_INGREDIENTS: Record&lt;Food, string[]&gt; = {...};
+const MATCH_FOOD_TO_COOKING: Record&lt;Food, () =&gt; {}&gt; = {...};
+const COMPARE_FOOD: Record&lt;Food, (otherFood: Food) =&gt; boolean&gt; = {...};
+</code></pre>
+
+        <h3>Conditionals</h3>
+
+        <p>
+            This is more or less a drop-in replacement for most switch statements.
+            The mapping may be slightly more verbose than a switch because each case (<code>K</code> in the map) must be explicitly handled.
+            I see that as a good thing.
+        </p>
+
+        <p>
+            Remember, the map's values can be functions, allowing for more complex logic and branching.
+            This allows us to use this pattern to replace many common if-else chains.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+type Food = "pizza" | "burger" | "salad";
+type FoodCritic = string;
+type FoodRater = (critic: FoodCritic) =&gt; number;
+
+const MATCH_FOOD_RATING: Record&lt;Food, FoodRater&gt; = {
+    pizza: getPizzaRating,
+    burger: getBurgerRating,
+    salad: getSaladRating,
+};
+
+const dinner = "pizza";
+const getRating = MATCH_FOOD_RATING[dinner];
+const dinnerRating = getRating("Gordon Ramsay");
+</code></pre>
+
+        <h2>Matrices</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            Can we take it up a notch?
+            This pattern works well as a replacement for switch statements and basic if-else (or really any conditionals), but often times the branching is multi-variable.
+            For instance, say we have some Food and want to make a full Meal based on the food.
+            Again, we're sent back to if-else.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+type MainDish = "steak" | "chicken" | "fish";
+type SideDish = "rice" | "potatoes" | "veggies";
+type Meal = {
+    chefsMessage: string;
+}
+
+function makeFoodWithTwoIngredients(main: IngredientA, side: SideDish): Meal {
+    let chefsMessage: string;
+    if (main === "steak" &amp;&amp; side === "rice") {
+        chefsMessage = "Not a common dish. Steak and rice.";
+    } else if (main === "steak" &amp;&amp; side === "potatoes") {
+        chefsMessage = "A classic. Steak and potatoes.";
+    } else if (main === "steak" &amp;&amp; side === "veggies") {
+        chefsMessage = "Steak and veggies are delicious.";
+    } else if (main === "chicken" &amp;&amp; side === "rice") {
+        chefsMessage = "Another classic. Chicken and rice.";
+    }
+    // You get the idea! This is a nightmare.
+
+    return { chefsMessage };
+}
+</code></pre>
+
+        <p>
+            What a mess!
+            I know it's a rather silly example, but I have seen code that resembles this in most organizations I've been a part of.
+            I think part of the issue is that our traditional OOP fails to nicely encapsulate this kind of logic.
+            We could maybe move this into some Factory or maybe use a Strategy pattern?
+            But again, it feels like overkill.
+            Let's try the mapping approach.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+type MainDish = "steak" | "chicken" | "fish";
+type SideDish = "rice" | "potatoes" | "veggies";
+type Meal = {
+    chefsMessage: string;
+}
+
+type MealKey = `${MainDish}__${SideDish}`;
+
+const MATCH_MEAL: Record&lt;MealKey, Meal&gt; = {};
+</code></pre>
+
+        <p>
+            As you might expect by now, there's that <code>Record</code> again.
+            But the keys are a bit more complex.
+            Using a <a href="https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html">template literal type</a>, we can create a new discrete union type that is a combination of <code>MainDish</code> and <code>SideDish</code>.
+            And with exhaustive type checking, we can ensure that all possible combinations are handled.
+            The above code will not actually compile because the mapping is not exhaustive.
+            The expanded map will look like below.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+// Same types as above
+
+const MATCH_MEAL: Record&lt;MealKey, Meal&gt; = {
+    steak__rice: {
+        chefsMessage: ""
+    },
+    steak__potatoes: {
+        chefsMessage: ""
+    },
+    steak__veggies: {
+        chefsMessage: ""
+    },
+    chicken__rice: {
+        chefsMessage: ""
+    },
+    chicken__potatoes: {
+        chefsMessage: ""
+    },
+    chicken__veggies: {
+        chefsMessage: ""
+    },
+    fish__rice: {
+        chefsMessage: ""
+    },
+    fish__potatoes: {
+        chefsMessage: ""
+    },
+    fish__veggies: {
+        chefsMessage: ""
+    }
+};
+</code></pre>
+
+        <p>
+            Now that is cool!
+            Every possible permutation is covered.
+            No more forgetting to add a new logic branch as new Dish types are added.
+        </p>
+
+        <h2>Wrapping Up</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            If you're working on a team (most of us are) and you want to try this out - show them.
+            Don't just start replacing all your conditionals with mappings.
+            Not only is this not idiomatic Typescript, it just <i>feels</i> different, and can invite pushback.
+            Have a conversation and get buy-in from your team to find the places where this pattern makes sense.
+        </p>
+
+        <p>
+            In my <i>personal</i> projects I leverage some additional abstractions that make the mappings feel more like pattern matching.
+            I wouldn't recommend this for most teams, for the same reason retrofitting RxJS into a codebase doesn't make sense, but it's a fun exercise.
+        </p>
+
+<!--        <h2>Resources</h2>-->
+<!--        <div class="util__small-divider util__mb2"></div>-->
+
+    </main>
+
+    <footer>
+    <div class="container">
+        <div class="content">
+            <sub>crafted with ☕ by Zach Bolan</sub>
+            <div>
+                <a href="https://github.com/bolanzach/ztalks" class="git-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                        <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    </svg>
+                    <sub>See this page on Github</sub>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+
+  
+
+</body></html>

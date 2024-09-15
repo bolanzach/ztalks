@@ -1,0 +1,10 @@
+<pre><code class="language-typescript codeblock">
+type FoodType = "pizza" | "burger" | "salad" | "donut";
+
+const MATCH_FOOD_TO_INGREDIENTS: Record&lt;FoodType, string&gt; = {
+    pizza: "🍕",
+    burger: "🍔",
+    salad: "🥗"
+    // Property 'donut' is missing in type 'Record&lt;FoodType, string&gt;'
+};
+</code></pre>

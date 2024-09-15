@@ -1,0 +1,174 @@
+<z component="index-layout" page-title="Typescript Exhaustive Type Checking" root-path="../">
+    <z component="navbar"></z>
+
+    <main class="util__container">
+        <h1>Typescript Exhaustive Type Checking</h1>
+        <h5>Published: 15.Sep.2024</h5>
+
+        <h2>Food</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            Let&#39;s open with a problem.
+            You have some <code>Food</code> and you need to perform some action based on the type of food.
+        </p>
+
+        <z component="ts-types-food-if-else"></z>
+
+        <p>
+            While the code is delicious, it&#39;s not easily extensible.
+            When a new <code>Food</code> type is added, the <i>developer</i> must remember to add a new conditional branch.
+        </p>
+
+        <p>
+            Taking a traditional object-oriented approach, one could be polymorphic and abstract over the types with concrete implementations.
+        </p>
+
+        <z component="ts-types-food-oop"></z>
+
+        <p>
+            That is arguably more extensible at the expense of being a little overkill.
+            In the first example it was kind of nice that we could just work with primitive values.
+            Since we&#39;re talking about Typescript, these primitive objects work well within React, but also with more <a href="https://en.wikipedia.org/wiki/Data-oriented_design">data-oriented architectures</a>.
+        </p>
+
+        <p>
+            Even worse, it&#39;s not always possible to create a nice class or object for each entity.
+            What if you&#39;re receiving a <code>CustomerOrder</code> from a different service or an async (Kafka) event, and need to create dinner based on what is in the order?
+            Argh! We&#39;re back to the if-else problem.
+        </p>
+
+        <z component="ts-types-food-if-else-order"></z>
+
+        <h2>The Solution</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            Let&#39;s jump straight into what a better solution may look like.
+        </p>
+
+        <z component="ts-types-exhaustive-types"></z>
+
+        <p>
+            There (hopefully) shouldn&#39;t be any crazy new syntax here.
+            And while this may look similar to the if-else example, and we&#39;re just using a regular object, the key insight is that <code>Record</code> type.
+        </p>
+
+        <p>
+            The <code>Record&lt;K, V&gt</code> essentially turns our object into a mapping of <code>K : V</code>.
+            This is immensely powerful because all possible permutations of <code>K</code> must be present in the map.
+            <i>If there is a missing key, the Typescript compiler will throw an error.</i>
+            When the keys are a <a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types">discrete union type</a> or enum, we can ensure that all possible values of that type are considered in the map.
+        </p>
+
+        <p>
+            So in our Food example, if we were to add a new Food type, we <i>MUST</i> add a new entry to the mapping.
+        </p>
+
+        <z component="ts-types-food-match-order-error"></z>
+
+        <h3>Back to OOP</h3>
+
+        <p>
+            Let&#39;s revisit the <code>CustomerOrder</code> example.
+            Maybe we do want to keep the <code>ingredients</code> within our <code>Food</code> because that seems to make sense.
+            We can use a mapping, as a Factory method, to handle the creation of our Food based on the Order.
+        </p>
+
+        <z component="ts-types-food-match-order"></z>
+
+        <p>
+            A factory is a great way to integrate with some object-oriented approaches.
+        </p>
+
+        <p>
+            One of the advantages of the mapping is that it takes a more functional approach.
+            By mapping values to values there can be multiple different maps throughout the codebase.
+            Rather than force into a single object that knows how to handle all operations for a type, we can spread out concerns knowing that when a new type is added, the compiler will complain until all mapping instances are updated.
+        </p>
+
+        <z component="ts-types-food-match-mappings"></z>
+
+        <h3>Conditionals</h3>
+
+        <p>
+            This is more or less a drop-in replacement for most switch statements.
+            The mapping may be slightly more verbose than a switch because each case (<code>K</code> in the map) must be explicitly handled.
+            I see that as a good thing.
+        </p>
+
+        <p>
+            Remember, the map&#39;s values can be functions, allowing for more complex logic and branching.
+            This allows us to use this pattern to replace many common if-else chains.
+        </p>
+
+        <z component="ts-types-match-fn"></z>
+
+        <h2>Matrices</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            Can we take it up a notch?
+            This pattern works well as a replacement for switch statements and basic if-else (or really any conditionals), but often times the branching is multi-variable.
+            For instance, say we have some Food and want to make a full Meal based on the food.
+            Again, we&#39;re sent back to if-else.
+        </p>
+
+        <z component="ts-types-meal-if-else"></z>
+
+        <p>
+            What a mess!
+            I know it&#39;s a rather silly example, but I have seen code that resembles this in most organizations I&#39;ve been a part of.
+            I think part of the issue is that our traditional OOP fails to nicely encapsulate this kind of logic.
+            We could maybe move this into some Factory or maybe use a Strategy pattern?
+            But again, it feels like overkill.
+            Let&#39;s try the mapping approach.
+        </p>
+
+        <z component="ts-types-matrix-1"></z>
+
+        <p>
+            As you might expect by now, there&#39;s that <code>Record</code> again.
+            But the keys are a bit more complex.
+            Using a <a href="https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html">template literal type</a>, we can create a new discrete union type that is a combination of <code>MainDish</code> and <code>SideDish</code>.
+            And with exhaustive type checking, we can ensure that all possible combinations are handled.
+            The above code will not actually compile because the mapping is not exhaustive.
+            The expanded map will look like below.
+        </p>
+
+        <z component="ts-types-matrix-2"></z>
+
+        <p>
+            Now that is cool!
+            Every possible permutation is covered.
+            No more forgetting to add a new logic branch as new Dish types are added.
+        </p>
+
+        <h2>Wrapping Up</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            If you&#39;re working on a team (most of us are) and you want to try this out - show them.
+            Don&#39;t just start replacing all your conditionals with mappings.
+            Not only is this not idiomatic Typescript, it just <i>feels</i> different, and can invite pushback.
+            Have a conversation and get buy-in from your team to find the places where this pattern makes sense.
+        </p>
+
+        <p>
+            In my <i>personal</i> projects I leverage some additional abstractions that make the mappings feel more like pattern matching.
+            I wouldn&#39;t recommend this for most teams, for the same reason retrofitting RxJS into a codebase doesn&#39;t make sense, but it&#39;s a fun exercise.
+        </p>
+
+<!--        <h2>Resources</h2>-->
+<!--        <div class="util__small-divider util__mb2"></div>-->
+
+    </main>
+
+    <z component="footer"></z>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+</z>

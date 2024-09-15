@@ -38,6 +38,7 @@ a {
   
 main {
     margin-bottom: 40px !important;
+    min-height: calc(100vh - 200px);
 }
 
 p, ol, ul, li {
@@ -96,4 +97,11 @@ p {
         margin-right: 12px;
         vertical-align: middle;
     }
+}
+
+.main-link {
+    display: block;
+    font-size: 1.1em;
+    text-decoration: none;
+    margin: 12px 0 6px 0;
 }

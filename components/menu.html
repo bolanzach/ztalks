@@ -1,0 +1,51 @@
+<div>
+    <div class="menu-cover"></div>
+
+    <div id="menu" class="menu">
+        <button type="button" id="menu-close-btn" class="toggle-btn" title="Change color theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+
+        <h4>change your theme</h4>
+
+        <div class="menu__theme-list">
+            <div id="theme-set-dark" class="menu__theme-option menu__theme-option--dark">
+                <p>dark<br/>mode.</p>
+            </div>
+            <div id="theme-set-light" class="menu__theme-option menu__theme-option--light">
+                <p>light<br/>mode.</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const getCurrentTheme = () => {
+            const savedTheme = window.localStorage.getItem('color_theme');
+            return savedTheme ?? 'dark';
+        };
+
+        const setTheme = (theme) => {
+            const [body] = document.getElementsByTagName('body');
+            body.classList.replace(`theme--${theme}`, `theme--${currentTheme}`);
+            const item = document.getElementById(`theme-set-${theme}`);
+            item.classList.add('menu__theme-option--selected');
+        };
+
+        let currentTheme = getCurrentTheme();
+        const menuBtn = document.getElementById('menu-btn');
+        const menuCloseBtn = document.getElementById('menu-close-btn');
+        const menu = document.getElementById('menu');
+
+        setTheme(currentTheme);
+
+        menuBtn.onclick = () => {
+            menu.classList.toggle('menu--open');
+            document.body.classList.toggle('util__no-scroll');
+        };
+        menuCloseBtn.onclick = () => {
+            menu.classList.toggle('menu--open');
+            document.body.classList.toggle('util__no-scroll');
+        };
+
+    </script>
+</div>

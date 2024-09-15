@@ -1,15 +1,21 @@
 <nav>
     <div class="util__container container">
         <!-- <img src="icon.png" alt="Zach Bolan" class="logo"> -->
-        <span>zach<span style="font-size: 0.45em;"> </span>bolan</span>
+        <a href="/" class="zach-bolan">zach bolan</a>
 
         <div class="right-panel">
+<!--            <button type="button" id="menu-btn" class="toggle-btn" title="Change color theme">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>-->
+<!--            </button>-->
+<!--            Lucide icons-->
             <button type="button" id="theme-toggle-btn" class="toggle-btn" title="Toggle color theme">
                 <svg xmlns="http://www.w3.org/2000/svg" id="theme-toggle-icon--light" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" id="theme-toggle-icon--dark" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
             </button>
         </div>
     </div>
+
+<!--    <z component="menu"></z>-->
 
     <script type="text/javascript">
 
@@ -31,6 +37,20 @@
 
         // Init themes
         toggleTheme(getCurrentTheme().reverse());
+
+
+        // const menuBtn = document.getElementById('menu-btn');
+        // const menuCloseBtn = document.getElementById('menu-close-btn');
+        // const menu = document.getElementById('menu');
+        //
+        // menuBtn.onclick = () => {
+        //     menu.classList.toggle('menu--open');
+        //     document.body.classList.toggle('util__no-scroll');
+        // };
+        // menuCloseBtn.onclick = () => {
+        //     menu.classList.toggle('menu--open');
+        //     document.body.classList.toggle('util__no-scroll');
+        // };
         
     </script>
 </nav>

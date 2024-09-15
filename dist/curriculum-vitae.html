@@ -1,0 +1,402 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&amp;family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;800&amp;display=swap" rel="stylesheet">
+    <link rel="icon" href="./icon.png" type="image/x-icon">
+    <title>Curriculum Vitae</title>
+  </head>
+
+  <!-- Google tag (gtag.js) -->
+<!--  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VKJ3JF6D9"></script>-->
+<!--  <script>-->
+<!--    window.dataLayer = window.dataLayer || [];-->
+<!--    function gtag(){dataLayer.push(arguments);}-->
+<!--    gtag('js', new Date());-->
+
+<!--    gtag('config', 'G-3VKJ3JF6D9');-->
+<!--  </script>-->
+
+  <body class="theme--light">
+    
+    <nav>
+    <div class="util__container container">
+        <!-- <img src="icon.png" alt="Zach Bolan" class="logo"> -->
+        <a href="/" class="zach-bolan">zach bolan</a>
+
+        <div class="right-panel">
+<!--            <button type="button" id="menu-btn" class="toggle-btn" title="Change color theme">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>-->
+<!--            </button>-->
+<!--            Lucide icons-->
+            <button type="button" id="theme-toggle-btn" class="toggle-btn" title="Toggle color theme">
+                <svg xmlns="http://www.w3.org/2000/svg" id="theme-toggle-icon--light" width="36" height="36" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" id="theme-toggle-icon--dark" width="36" height="36" viewbox="0 0 24 24" fill="none" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+            </button>
+        </div>
+    </div>
+
+<!--    <z component="menu"></z>-->
+
+    <script type="text/javascript">
+
+        const getCurrentTheme = () => {
+            const savedTheme = window.localStorage.getItem('color_theme');
+            return savedTheme === 'dark' ? ['dark', 'light'] : ['light', 'dark'];
+        };
+
+        const toggleTheme = ([from, to]) => {
+            document.getElementById(`theme-toggle-icon--${from}`).style.display = 'none';
+            document.getElementById(`theme-toggle-icon--${to}`).style.display = 'block';
+            const [body] = document.getElementsByTagName('body');
+            body.classList.replace(`theme--${from}`, `theme--${to}`);
+            window.localStorage.setItem('color_theme', to);
+        }
+
+        const toggleBtn = document.getElementById('theme-toggle-btn');
+        toggleBtn.onclick = () => toggleTheme(getCurrentTheme());
+
+        // Init themes
+        toggleTheme(getCurrentTheme().reverse());
+
+
+        // const menuBtn = document.getElementById('menu-btn');
+        // const menuCloseBtn = document.getElementById('menu-close-btn');
+        // const menu = document.getElementById('menu');
+        //
+        // menuBtn.onclick = () => {
+        //     menu.classList.toggle('menu--open');
+        //     document.body.classList.toggle('util__no-scroll');
+        // };
+        // menuCloseBtn.onclick = () => {
+        //     menu.classList.toggle('menu--open');
+        //     document.body.classList.toggle('util__no-scroll');
+        // };
+        
+    </script>
+</nav>
+
+    <main class="cover-letter util__container">
+        <h1>Zach Bolan</h1>
+
+        <h2 class="util__no-header-bottom">Curriculum Vitae</h2>
+        <div class="util__small-divider util__mb2"></div>
+        <h5>Updated: August 2024</h5>
+
+        <p>
+            Hey, I'm Zach Bolan. My <a href="./resume.pdf">resume</a> has the abbreviated version. This is the 
+            longer-form as I don't believe two pages of bullet points can properly sum up who I am or how I work. 
+            If you're looking for a little more narrative, then hopefully you find this to be helpful!
+        </p>
+    
+        <p>
+            <b class="util__t-sans">Are you working on something <i>AMBITIOUS</i></b> and interested in working with me? Feel free to 
+            <a href="https://www.linkedin.com/in/zach-bolan/" target="_blank" rel="noopener noreferrer">say hello! ⇲</a>
+        </p>
+
+        <h2 class="util__no-header-bottom">About Me</h2>
+        <div class="util__small-divider util__mb2"></div>
+    
+        <p>
+            I'm a Tech-Lead experienced fullstack Web software engineer based out of Venice, California, just a few blocks from the Breakwater<a href="https://westsidelosangeles.com/visitor-guide-venice-breakwater.php"> 🏄🏻‍♂️</a>. My modus operandi is 
+            working at a higher level of abstraction; leading, mentoring, and challenging others, while jumping into the most 
+            difficult problems when needed. The problems that I'm enjoying solving revolve around <i>Teams</i>, <i>Culture</i>, and <i>Scale</i>.
+            I empower my engineering team:
+        </p>
+
+        <ol>
+            <li>To continuously improve themselves, both personally and professionally</li>
+            <li>To design systems and drive innovation that <i>directly bring value to our users</i></li>
+            <li>To have fun. Life is too short not to enjoy what we're doing</li>
+        </ol>
+
+        <p>
+            I am currently spending a significant amount of my energy and time 
+            launching <a href="https://herdbuy.com/" target="_blank" rel="noopener noreferrer">HERDBUY ⇲</a> - an E-commerce 
+            website, with a twist, that gives power back to the buyer. This 
+            is as close to a startup from a garage as it gets, with a few college friends trying to build something 
+            cool (we're all remote, renting physical garages in California is expensive!). As the founding and lead 
+            engineer, I've bootstrapped the majority of the app and am responsible for every significant technical 
+            decision. While definitely a grind, it's honestly been refreshing to be laser focused on the product and 
+            trying to invent something that brings value to buyers and sellers. We had a soft launch in June where we
+            learned a lot, and have now officially launched in late July 2024!
+        </p>
+
+        <h4 class="util__no-header-bottom">Other Interests 🌐</h4>
+
+        <p>
+            While I have nearly a decade of experience in Web development I have spent time working around computer graphics and video games.
+            I've always been visually inclined (I was originally a Fine Arts major) and so tinkering in this area just feels natural.
+            I also enjoy building things for builders, which is why I probably always end up building an <i>engine</i> rather than actually creating a game.
+            And like any self-respecting engineer these, days I have done some work in Machine Learning.
+            I'm passionate about seeing how ML can empower, not replace, creatives and builders.
+        </p>
+
+        <p>
+            I also care deeply about our environment and the future of our planet.
+            <b>I believe mitigating a climate crisis is one of the most pressing issues of our time.</b>
+            This is why I have moved my career into focusing on Climate, specifically into applying software and technology to meet the needs of our planet.
+            I'm a <a href="https://www.climatebase.org/">Climatebase</a> Fellow where I am currently deeply exploring the issues faced by the people and builders in the Climate space.
+            There is tremendous opportunity to make an immense impact and I'm hopeful that I sit at the intersection of the Web, computer graphics, ML, and Climate.
+        </p>
+
+        <h2 class="util__no-header-bottom">Education</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <h3 class="header-row">
+            <div>
+                <img src="./jmu.jpg" alt="James Madison University" class="header-row__image">
+                <span class="header-row__title">JAMES MADISON UNIVERSITY</span>
+            </div>
+            <span class="header-row__date">May 2015</span>
+        </h3>
+        
+        <ul>
+            <li>B.S. in Media Arts and Design</li>
+            <li>Minored in Computer Science</li>
+        </ul>
+
+        <h2 class="util__no-header-bottom">Work</h2>
+        <div class="util__small-divider util__mb2"></div>
+        <h5>Take a ride through my career and see not just what I've worked on and the tech, but the impact I made.</h5> 
+
+        <h3 class="header-row">
+            <div>
+                <img src="./rii.png" alt="Research Innovations Inc." class="header-row__image">
+                <span class="header-row__title">RESEARCH INNOVATIONS</span>
+            </div>
+            <span class="header-row__date">July 2015 — Nov 2018</span>
+        </h3>
+        <h5>Learning the basics of not just software engineering, but learning how I work effectively.</h5>
+
+        <p>
+            I started my career off in Washington DC as a full-stack engineer at <a href="https://www.researchinnovations.com/">Research Innovations</a>. 
+            I made a lot of mistakes, and then made some more. This is where I was first introduced to frontend 
+            frameworks and consequently built a lot in AngularJS and then React.
+        </p>
+
+        <p>
+            Being such a small company, I had the advantage of being involved
+            in many decisions and really learned how software systems are built. Some key highlights:
+        </p>
+
+        <ul>
+            <li>Introduced modern tooling to the UI codebase, such as ES2015</li>
+            <li>Built the UIs and APIs for complex networked graph and time series visualizations</li>
+            <li>Helped migrate the legacy system to React by building the underlying component framework</li>
+        </ul>
+
+        <p>
+            By the time I moved on to my next role I was leading some small teams and projects, giving 
+            me a taste for what would come later.
+        </p>
+
+        <h3 class="header-row">
+            <div>
+                <img src="./linkedin.png" alt="LinkedIn" class="header-row__image">
+                <span class="header-row__title">LINKEDIN</span> 
+            </div>
+            <span class="header-row__date">Dec 2018 — Aug 2021</span>
+        </h3>
+        <h5>Learning software engineering at scale - how the big dogs work.</h5>
+
+        <p>
+            For my next play I was looking to really challenge myself and take things to the next level - and that's how I ended up at 
+            LinkedIn, largely as a frontend engineer. I was on a 
+            high-performing team building out <a href="https://business.linkedin.com/talent-solutions/talent-insights">Talent Insights</a>, 
+            and then eventually moving over to work on various 
+            <a href="https://business.linkedin.com/talent-solutions/linkedin-hiring-integrations/ats-integrations">
+            Recruiter features</a>.
+        </p>
+
+        <p>
+            I onboarded my team onto LinkedIn's notification system, a multi-quarter effort of designing and implementation that 
+            had me working with multiple different teams across the entire tech stack from Ember, Java, HDFS, and Kafka. The infrastructure
+            I built was in support of a machine learning anomoly detection engine that surfaces important events, such as 
+            when a company experiences layoffs. My work was the template for the team and allowed future notifications and alerts to be iterated
+            on quickly. Additionally, I:
+        </p>
+
+        <ul>
+            <li>
+                Built the APIs that consumed anomaly events and the UIs to display them in-app
+            </li>
+            <li>
+                Evangelized migrating to Octane and advocated for modern practices by putting them into practice. We were one of the first teams at LinkedIn to release 
+                customer facing products using the new framework
+            </li>
+            <li>
+                Designed a shareable read-only view of Talent Insights
+            </li>
+            <li>
+                Built some of the first underlying React components for Recruiter. These components represented the core building blocks,
+                such as buttons, icons, lists, etc. that would be used by future React apps
+            </li>
+        </ul>
+
+        <p>
+            Above all, my experience at LinkedIn taught me about <i>scale</i>. I'm not just talking about building systems 
+            for millions of users, but how to design systems and write code for an audience of 
+            hundreds of Engineers. And even more importantly, I learned how to effectively communicate, work with, and get buy in from these
+            hundereds of Engineers, Designers, and Product Managers, all across the globe.
+        </p>
+        
+        <h3 class="header-row">
+            <div>
+                <img src="./videoamp.jpg" alt="VideoAmp" class="header-row__image">
+                <span class="header-row__title">VIDEOAMP</span>
+            </div>
+            <span class="header-row__date">Sep 2021 — Apr 2024</span>
+        </h3>
+        <h5>Taking control of the helm.</h5>
+
+        <p>
+            Most recently, I've sat as a Principal Software Engineer at <a href="https://videoamp.com/">VideoAmp</a>. I was the Typescript Node
+            subject-matter-expert, though I worked extensively across the tech stack with React, Go, Postgres, Snowflake, and Kafka.
+        </p>
+
+        <h4 class="util__no-header-bottom">As a Senior Software Engineer</h4>
+        <p>
+            I successfully evangelized and 
+            then led the effort to re-architect Node microservices to meet the increase in load and quality expectations on the systems.
+        </p>
+        <ul>
+            <li>
+                Led and mentored a team that, in less than twelve months, grew from four engineers to over a dozen
+            </li>
+            <li>
+                Designed and built a new Node API that introduced stronger typings, a tighter architecture, and model validation
+            </li>
+            <li>
+                Gave frequent talks to promote best practices, Code Review standards, and advocated for Typescript APIs 
+            </li>
+        </ul>
+
+        <p>
+            The new system was delivered with zero downtime to users and we appraoched zero runtime alerts in the service when 
+            deployed. Shortly after, I was a Tech Lead on a separate project for 
+            <a href="https://videoamp.com/press/videoamp-to-measure-deduplicated-youtube-reach-and-frequency/">measuring YouTube</a> 
+            that was to be built on top of the new system. Again the team was able to move fast and deliver with no user-facing issues - 
+            proof that the new services were a success.
+        </p>
+
+        <h4 class="util__no-header-bottom">As a Principal Software Engineer</h4>
+        <p>
+            I took the learnings from those APIs and built new services which onboarded Typescript into the organization's new
+            Bazel build system, where I focused on <i>creating the best developer experience imaginable</i>. Meanwhile, 
+            this effort was really ancillary - I was leading a team to design and launch a <i>Report Templating Engine</i> 
+            that would need to be built using these new tools. In three months I achieved both:
+        </p>
+        <ul>
+            <li>
+                Typescript became a first-class supported programming language where I integrated 
+                GRPC, static database types, model validation, and integrated into the release pipelines
+            </li>
+            <li>
+                The engine was released on these new tools
+            </li>
+        </ul>
+
+        <p>
+            The responsibilities only grew from there. Following that project I:
+        </p>
+
+        <ul>
+            <li>
+                Helped build a team of six engineers with the Engineering Manager. As the Lead,
+                I was responsible for all Scrum ceremonies, architecture, scoping,
+                and project planning. My day was largely spent mentoring and unblocking the team through relentlessly improving processes, and I 
+                mostly got my hands dirty on the most difficult technical problems and designs
+            </li>
+            <li>
+                Architected the <code>Platform 2.0</code> by integrating the acquired <a href="https://www.elsyglobal.com/">Elsy Platform</a> into VideoAmp.
+                I oversaw the higher-level architecture of combining the APIs, UIs, and data models, while delegating lower-level designs to the team.
+            </li>
+            <li>
+                Led the efforct for the company to adopt HTMX and OpenAPI tooling to power a Developer Portal for
+                external API consumers. I pushed for the entire company to adopt RESTful API standards, defined our API lifecycle, and
+                advocated for API Evolution
+            </li>
+        </ul>
+
+        <p>
+            This had been the most rewarding
+            period of my career thus far. It was addictive to witness the team learn and grow, and I was satisfied with how
+            the decisions I made began to impact the engineering organization as a whole.
+        </p>
+
+        <h3 class="header-row">
+            <div>
+                <img src="./herdbuy.png" alt="HerdBuy.com" class="header-row__image">
+                <span class="header-row__title">HERDBUY</span>
+                <span class="header-row__title header-row__date">(Part Time)</span>
+            </div>
+            <span class="header-row__date">Oct 2023 — Present</span>
+        </h3>
+        <h5>Let's get Started Up.</h5>
+
+        <p>
+            Bootstrapped(ing) an E-commerce startup <a href="https://herdbuy.com" target="_blank">HERDBUY.com ⇲</a> with three college friends.
+            I've been focused on a few things:
+        </p>
+
+        <ul>
+            <li>
+                Building. As the founding engineer, I am by definition extremely hands-on building out the infrastructure, backend Golang services, Postgres
+                datastores, serverless Functions, and React user experiences
+            </li>
+            <li>
+                Balancing technical decisions that allow us to quickly deliver <i>something</i> that is <b>valuable</b>. I've cut multiple features,
+                relied on manual processes until they don't scale, used
+                off-the-shelf solutions where it made sense, and have built a LOT everywhere else (see above)
+            </li>
+            <li>
+                Shaping the company strategy. I helped us re-focus on attacking a single market that we could later grow from or dominate the niche
+            </li>
+        </ul>
+
+        <p>
+            I've been extremely energized from building HerdBuy. Pouring my time and energy into something, and seeing others enjoy and get value out of what I
+            created, is one of the main reasons why I fell into software. Building a company is likely something I will continue to do in the foreseeable future, in one 
+            form or another.
+        </p>
+
+        <h3 class="header-row">
+            <div>
+                <img src="./ivyenergy.jpg" alt="Ivy Energy" class="header-row__image">
+                <span class="header-row__title">IVY ENERGY</span>
+            </div>
+            <span class="header-row__date">July 2024 — Present</span>
+        </h3>
+        <h5>Climate and the Clean Energy Transition.</h5>
+
+        <p>
+            👀
+        </p>
+    
+    </main>
+
+    <footer>
+    <div class="container">
+        <div class="content">
+            <sub>crafted with ☕ by Zach Bolan</sub>
+            <div>
+                <a href="https://github.com/bolanzach/ztalks" class="git-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github">
+                        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                        <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                    </svg>
+                    <sub>See this page on Github</sub>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+    
+
+  
+
+</body></html>

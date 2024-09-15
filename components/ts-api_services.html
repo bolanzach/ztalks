@@ -1,0 +1,9 @@
+<pre><code class="language-typescript codeblock">
+class ChartService {
+    async getChart(): Promise&lt;GetChartResponse&gt; {
+        const user = await this.userService.getRequestUser();
+        const chartData = await this.chartRepository.getChartDataForUser(user);
+        return transformChartDataToResponse(chartData);
+    }
+}
+</code></pre>

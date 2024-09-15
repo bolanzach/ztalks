@@ -25,15 +25,21 @@
     <nav>
     <div class="util__container container">
         <!-- <img src="icon.png" alt="Zach Bolan" class="logo"> -->
-        <span>zach<span style="font-size: 0.45em;"> </span>bolan</span>
+        <a href="/" class="zach-bolan">zach bolan</a>
 
         <div class="right-panel">
+<!--            <button type="button" id="menu-btn" class="toggle-btn" title="Change color theme">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>-->
+<!--            </button>-->
+<!--            Lucide icons-->
             <button type="button" id="theme-toggle-btn" class="toggle-btn" title="Toggle color theme">
                 <svg xmlns="http://www.w3.org/2000/svg" id="theme-toggle-icon--light" width="36" height="36" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" id="theme-toggle-icon--dark" width="36" height="36" viewbox="0 0 24 24" fill="none" stroke="#f1f1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
             </button>
         </div>
     </div>
+
+<!--    <z component="menu"></z>-->
 
     <script type="text/javascript">
 
@@ -55,13 +61,27 @@
 
         // Init themes
         toggleTheme(getCurrentTheme().reverse());
+
+
+        // const menuBtn = document.getElementById('menu-btn');
+        // const menuCloseBtn = document.getElementById('menu-close-btn');
+        // const menu = document.getElementById('menu');
+        //
+        // menuBtn.onclick = () => {
+        //     menu.classList.toggle('menu--open');
+        //     document.body.classList.toggle('util__no-scroll');
+        // };
+        // menuCloseBtn.onclick = () => {
+        //     menu.classList.toggle('menu--open');
+        //     document.body.classList.toggle('util__no-scroll');
+        // };
         
     </script>
 </nav>
 
     <main class="util__container">
         <h1>A Highly Opinionated Approach for Designing (Typescript) Web APIs</h1>
-        <h5>Authored: July 2024</h5>
+        <h5>Published: 01.Aug.2024</h5>
 
         <h2>File Structure</h2>
         <div class="util__small-divider util__mb2"></div>
@@ -110,81 +130,76 @@
         <h3>Routes</h3>
 
         <p>
-            A route is the component that handles Requests and Responses as they enter and leave your service. Its main
-            purpose is to handle the protocol that your API is using, such as HTTP or gRPC. A route should have no
-            "business logic" and instead only be responsible for parsing the incoming Request and packaging the
-            Response back.
-        </p>
-
-        <p>
-            The intention is that the
-            route is tightly coupled to the network protocol so that it can abstract the implementation from the rest of the
-            system. This includes both requests, via REST, RPC, GraphQL, etc <i>AND</i> responses, such as success and error codes.
+            A Route is the entrypoint that handles incoming Requests and creates Responses.
+            A Route should have no "business logic" and instead only be responsible for parsing the incoming Request and packaging the Response back.
+            Its only purpose is to abstract over the protocol that your API is using, such as HTTP or gRPC.
+            This includes both requests, via REST, RPC, GraphQL, etc. <i>AND</i> responses, such as success and error codes.
             In other words, the application should be able to swap out or add a new protocol without affecting the rest of the system.
         </p>
 
         <pre><code class="language-typescript codeblock">
-
-        @Route('/chart')
-        export class ChartRoute {
-            @Get('/')
-            async getChart(req: RequestU&lt;GetChartRequest&gt;, res: GetChartResponse) {
-                try {
-                    return await this.chartService.getChart();
-                } catch (e) {
-                    handleHttpError(e);
-                }
-            }
+@Route('/chart')
+export class ChartRoute {
+    @Get('/')
+    async getChart(req: Request&lt;GetChartRequest&gt;): Promise&lt;GetChartResponse&gt; {
+        try {
+            return await this.chartService.getChart();
+        } catch (e) {
+            handleHttpError(e);
         }
-        
-</code>
-</pre>
-
-        <h3>Services</h3>
-
-        <p>
-            Services are where the business logic of your application live. This is the module that is responsible for
-            orchestrating the various components of your system to fulfill a request. This includes calling into
-            repositories, clients, and other services to retrieve the data it needs.
-        </p>
-
-        <code class="codeblock">
-        export class ChartService {
-            async getChart(): PromiseGetChartResponse {
-                const user = await this.userService.getRequestUser();
-                const chartData = await this.chartRepository.getChartDataForUser(user);
-                return transformChartDataToResponse(chartData);
-            }
-        }
-        </code>
+    }
+}
+</code></pre>
 
         <h3>Models</h3>
 
         <p>
-            It's meaningless to talk about other modules without a long discussion on models. Taking some inspiration from
+            It's meaningless to talk about other modules without a discussion on Models. Taking some inspiration from
             Domain-Driven Design, Models are at the center of the system and what other modules are built around. The
-            application should explicitly model as much of the domain as possible
+            application should explicitly model as much of the domain as possible.
         </p>
 
         <p>
-            In general, models are conceptually groupings of data, much like a <code>struct</code> in many languages. Additionally,
-            it is encouraged to take a slight RPC approach and model each Request and Response as a model. And lastly,
-            the system should be able to validate the data integrity of a model, such as ensuring that a required field is
-            actually present.
+            In general, Models are conceptually a "bucket" of data, analogous to a <code>struct</code> in many languages.
+            As wil be shown later, methods are allowed on Models.
+            Additionally, it is encouraged to take a slight RPC approach and craft each Request and Response as a distinct Model.
+            And lastly, the system should be able to validate the data integrity of a Model, such as ensuring that a required field is actually present.
+            For this I generally reach for XXX.
         </p>
 
-        <code class="codeblock">
-        export class Chart {
-            @IsUUID()
-            id: string;
+        <pre><code class="language-typescript codeblock">
+class Chart {
+    @IsUUID()
+    id: string;
 
-            @IsModel(Date)
-            refreshedAt: Date;
+    @IsModel(Date)
+    refreshedAt: Date;
 
-            @IsArray(Number)
-            data: number[];
-        }
-        </code>
+    @IsArray(Number)
+    data: number[];
+}
+</code></pre>
+
+        <h3>Services</h3>
+
+        <p>
+            Services are where the magic takes place and all the business logic of the application lives.
+            This is the module that is responsible for orchestrating the various components of your system to fulfill a request.
+            This includes calling into Repositories, Clients, and other Services to retrieve the data it needs.
+            In general, when calling into Repositories, it is important that the Service only directly calls a Repository of the same name.
+            For example, a <code>UserService</code> should only call into a <code>UserRepository</code> and not a <code>ChartRepository</code>.
+            This is because <i>side effects</i> take place in the Service, which would be circumvented if the Service were to directly use another Repository.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+class ChartService {
+    async getChart(): Promise&lt;GetChartResponse&gt; {
+        const user = await this.userService.getRequestUser();
+        const chartData = await this.chartRepository.getChartDataForUser(user);
+        return transformChartDataToResponse(chartData);
+    }
+}
+</code></pre>
 
         <h3>Repositories</h3>
 
@@ -192,6 +207,41 @@
             Repositories interface with the data store. In a similar fashion to routes, repositories are an abstraction
             over an implementation and you should technically be able to swap out the data engine without affecting the
             other pieces of the system.
+        </p>
+
+        <h3>Transformers</h3>
+
+        <p>
+            Lastly are the Transformers, which convert data between different Models.
+            Transformers must be synchronous and pure functions.
+            A Transformer may also be a mapping of one Model to another.
+        </p>
+
+        <pre><code class="language-typescript codeblock">
+function transformChartQueryResultToChart(queryResult: ChartQueryResult): Chart {
+    return {
+        id: queryResult.id,
+        refreshedAt: new Date(queryResult.refreshedAt),
+        data: queryResult.data,
+    };
+}
+
+const MAP_CHART_TYPE_TO_LABEL: Record&lt;ChartType, string&gt; = {
+    [ChartType.BAR]: 'Bar Chart',
+    [ChartType.LINE]: 'Line Chart',
+    [ChartType.PIE]: 'Pie Chart',
+};
+</code></pre>
+
+        <h2>ORMs</h2>
+        <div class="util__small-divider util__mb2"></div>
+
+        <p>
+            ORMs are a terrible abstraction.
+        </p>
+
+        <p>
+            Okay
         </p>
 
 <!--        <h2>Intro</h2>-->

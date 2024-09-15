@@ -1,0 +1,11 @@
+<z component="codeblock">
+type MainDish = "steak" | "chicken" | "fish";
+type SideDish = "rice" | "potatoes" | "veggies";
+type Meal = {
+    chefsMessage: string;
+}
+
+type MealKey = `${MainDish}__${SideDish}`;
+
+const MATCH_MEAL: Record&lt;MealKey, Meal&gt; = {};
+</z>

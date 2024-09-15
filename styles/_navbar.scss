@@ -2,6 +2,15 @@ nav {
     border-bottom: 1px solid rgb(142, 142, 142);
     height: 40px;
 
+    .zach-bolan {
+        color: black !important;
+        text-decoration: none !important;
+
+        .theme--dark & {
+            color: #d2d2d2 !important;
+        }
+    }
+
     .theme--dark & {
         background-color: rgb(41, 44, 53);
         border-color: rgba(24, 25, 30, 0.97);
@@ -24,6 +33,7 @@ nav {
     }
 
     .toggle-btn {
+        -webkit-appearance: none;
         width: 30px;
         height: 30px;
         border-radius: 15px;

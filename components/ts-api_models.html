@@ -1,0 +1,12 @@
+<pre><code class="language-typescript codeblock">
+class Chart {
+    @IsUUID()
+    id: string;
+
+    @IsModel(Date)
+    refreshedAt: Date;
+
+    @IsArray(Number)
+    data: number[];
+}
+</code></pre>

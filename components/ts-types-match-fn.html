@@ -1,0 +1,15 @@
+<z component="codeblock">
+type Food = "pizza" | "burger" | "salad";
+type FoodCritic = string;
+type FoodRater = (critic: FoodCritic) => number;
+
+const MATCH_FOOD_RATING: Record&lt;Food, FoodRater&gt; = {
+    pizza: getPizzaRating,
+    burger: getBurgerRating,
+    salad: getSaladRating,
+};
+
+const dinner = "pizza";
+const getRating = MATCH_FOOD_RATING[dinner];
+const dinnerRating = getRating("Gordon Ramsay");
+</z>

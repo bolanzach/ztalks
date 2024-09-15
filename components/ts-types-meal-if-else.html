@@ -1,0 +1,23 @@
+<pre><code class="language-typescript codeblock">
+type MainDish = "steak" | "chicken" | "fish";
+type SideDish = "rice" | "potatoes" | "veggies";
+type Meal = {
+    chefsMessage: string;
+}
+
+function makeFoodWithTwoIngredients(main: IngredientA, side: SideDish): Meal {
+    let chefsMessage: string;
+    if (main === "steak" && side === "rice") {
+        chefsMessage = "Not a common dish. Steak and rice.";
+    } else if (main === "steak" && side === "potatoes") {
+        chefsMessage = "A classic. Steak and potatoes.";
+    } else if (main === "steak" && side === "veggies") {
+        chefsMessage = "Steak and veggies are delicious.";
+    } else if (main === "chicken" && side === "rice") {
+        chefsMessage = "Another classic. Chicken and rice.";
+    }
+    // You get the idea! This is a nightmare.
+
+    return { chefsMessage };
+}
+</code></pre>
