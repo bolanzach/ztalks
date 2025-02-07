@@ -20,7 +20,11 @@
     <script type="text/javascript">
 
         const getCurrentTheme = () => {
-            const savedTheme = window.localStorage.getItem('color_theme');
+            let savedTheme = window.localStorage.getItem('color_theme');
+            if (!savedTheme) {
+                // Use system preference
+                savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+            }
             return savedTheme === 'dark' ? ['dark', 'light'] : ['light', 'dark'];
         };
 
@@ -37,6 +41,11 @@
 
         // Init themes
         toggleTheme(getCurrentTheme().reverse());
+
+        document.addEventListener("readystatechange", () => {
+            // The theme button is initial totally transparent to hide it from users with JS disabled.
+            toggleBtn.style.opacity = 1;
+        });
 
 
         // const menuBtn = document.getElementById('menu-btn');

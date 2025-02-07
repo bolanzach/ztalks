@@ -60,13 +60,12 @@ h5 {
   margin-top: 8px;
 }
 
-li {
-  font-size: 1em;
-  margin-bottom: 0.5em;
+p, li {
+  line-height: 1.7em;
 }
 
-p {
-  line-height: 1.7em;
+li {
+  margin-bottom: 0.5em;
 }
 
 .header-row {
@@ -201,6 +200,7 @@ nav .toggle-btn {
   align-items: center;
   justify-content: center;
   background-color: transparent;
+  opacity: 0;
   transition: background-color 0.1s ease-in;
 }
 nav .toggle-btn:hover {
@@ -270,6 +270,10 @@ code {
 }
 .menu-cover.menu-cover--open {
   display: block;
+}
+
+.cover-letter li {
+  line-height: 1.2em;
 }
 
 /*# sourceMappingURL=main.css.map */
