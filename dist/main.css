@@ -169,6 +169,7 @@ nav {
 nav .zach-bolan {
   color: black !important;
   text-decoration: none !important;
+  font-weight: 900;
 }
 .theme--dark nav .zach-bolan {
   color: #d2d2d2 !important;
