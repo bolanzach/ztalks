@@ -23,4 +23,4 @@ See how the [zcompiler](./compiler/readme.md) works!
 
 ## Deployment
 
-I'm a cheap and simple fuck, so I use [AWS Amplify](https://aws.amazon.com/amplify/) to host. Just push this guy to `master`.
+I'm a cheap and simple guy, so I use [AWS Amplify](https://aws.amazon.com/amplify/) to host. Just push this guy to `master`.
