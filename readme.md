@@ -1,6 +1,6 @@
 # [zachbolan.com](https://www.zachbolan.com)
 
-### Local Development
+## Local Development
 
 **Dependencies**
 
@@ -20,3 +20,7 @@ See how the [zcompiler](./compiler/readme.md) works!
 > At the moment, the compiler messes up at times when adding new components or pages. Usually running the compiler again will fix it.
 
 > You should manually create a `/dist` folder as the compiler will not create it. This allows you to add other static files, like images, to the build.
+
+## Deployment
+
+I'm a cheap and simple fuck, so I use [AWS Amplify](https://aws.amazon.com/amplify/) to host. Just push this guy to `master`.
